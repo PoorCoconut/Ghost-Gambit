@@ -1,2 +1,2 @@
-# Cocos Game Template
-A GODOT Game template that has many of the boilerplate components many games share. This will help speed up production by letting developers actually make the game rather than setting it up first. This template is for 2D games!
+# Ghost Gambit
+Try your soul in this exciting roguelite where you kill and steal your enemy's skills to rise forward!
