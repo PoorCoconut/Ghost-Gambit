@@ -1,0 +1,7 @@
+[gd_resource type="Theme" format=3 uid="uid://cnuqxs72kbe17"]
+
+[ext_resource type="FontFile" uid="uid://56rvngnmu636" path="res://game_assets/fonts/cabin-sketch/CabinSketch-Bold.ttf" id="1_n5blm"]
+
+[resource]
+default_font = ExtResource("1_n5blm")
+default_font_size = 48

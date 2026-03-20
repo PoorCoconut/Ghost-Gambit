@@ -54,6 +54,10 @@ folder_colors={
 
 player=""
 
+[gui]
+
+theme/custom="uid://cnuqxs72kbe17"
+
 [input]
 
 move_up={

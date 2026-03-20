@@ -54,7 +54,6 @@ theme_override_constants/separation = 16
 
 [node name="Label" type="Label" parent="Control/MarginContainer/PanelContainer/VBoxContainer/MasterVolume" unique_id=1763379922]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "Master"
 
 [node name="VolMasterSlider" type="HSlider" parent="Control/MarginContainer/PanelContainer/VBoxContainer/MasterVolume" unique_id=887957647]
@@ -70,7 +69,6 @@ theme_override_constants/separation = 21
 
 [node name="Label" type="Label" parent="Control/MarginContainer/PanelContainer/VBoxContainer/MusicVolume" unique_id=802494276]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "Music"
 
 [node name="VolMusicSlider" type="HSlider" parent="Control/MarginContainer/PanelContainer/VBoxContainer/MusicVolume" unique_id=2011425788]
@@ -86,7 +84,6 @@ theme_override_constants/separation = 30
 
 [node name="Label" type="Label" parent="Control/MarginContainer/PanelContainer/VBoxContainer/SFXVolume" unique_id=143706060]
 layout_mode = 2
-theme_override_font_sizes/font_size = 8
 text = "SFX"
 
 [node name="VolSFXSlider" type="HSlider" parent="Control/MarginContainer/PanelContainer/VBoxContainer/SFXVolume" unique_id=271924846]
