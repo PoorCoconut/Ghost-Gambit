@@ -10,7 +10,9 @@ config_version=5
 
 [application]
 
-config/name="Coco's Game Template"
+config/name="Ghost Gambit"
+config/description="A roguelite where you kill and steal your enemy's skills. "
+config/version="1.0.0"
 run/main_scene="uid://camlgx74mlna4"
 config/features=PackedStringArray("4.6", "GL Compatibility")
 config/icon="res://icon.svg"
@@ -30,12 +32,11 @@ SoundBank="*uid://ce7kxbchc8ajm"
 
 [display]
 
-window/size/viewport_width=640
-window/size/viewport_height=360
+window/size/viewport_width=1920
+window/size/viewport_height=1080
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
-window/stretch/scale_mode="integer"
 
 [file_customization]
 
@@ -86,7 +87,6 @@ move_right={
 
 [rendering]
 
-textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
