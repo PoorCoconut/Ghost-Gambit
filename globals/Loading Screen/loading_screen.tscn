@@ -1,6 +1,12 @@
 [gd_scene format=3 uid="uid://1cdnr1bl805e"]
 
 [ext_resource type="Script" uid="uid://c3ymjew01dbxk" path="res://globals/Loading Screen/loading_screen.gd" id="1_jfis6"]
+[ext_resource type="Shader" uid="uid://ccmx33oq2wc7y" path="res://vfx/shaders/screen_trans1.gdshader" id="2_ms32y"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nhybv"]
+shader = ExtResource("2_ms32y")
+shader_parameter/progress = 0.0
+shader_parameter/diamondPixelSize = 25.0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_g3ggr"]
 bg_color = Color(0.09239706, 0.09239707, 0.092397, 1)
@@ -12,7 +18,8 @@ bg_color = Color(0.8136529, 0.6790697, 0.5736322, 1)
 layer = 100
 script = ExtResource("1_jfis6")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=2042540885]
+[node name="ColorRect" type="ColorRect" parent="." unique_id=42581127]
+material = SubResource("ShaderMaterial_nhybv")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
