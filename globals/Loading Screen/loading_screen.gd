@@ -1,16 +1,15 @@
 extends CanvasLayer
 
 @onready var progress_bar = $LoadingBar
-@onready var background = $ColorRect
 var target_scene_path : String = ""
 
 func _ready():
 	hide()
 	set_process(false) # Turn off _process so it isn't constantly running in the background
+	progress_bar.value = 0.0
 
 # Call this function when you want to load a level
 func load_level(path: String):
-	trans_in()
 	target_scene_path = path
 	show() # Make the loading screen visible
 	
@@ -30,12 +29,12 @@ func _process(_delta):
 	progress_bar.value = progress_array[0] * 100
 	
 	if status == ResourceLoader.THREAD_LOAD_LOADED: # Check if the background thread has finished building the scene
+		set_process(false)
 		#Grab the fully built scene from the background thread
 		var new_scene = ResourceLoader.load_threaded_get(target_scene_path)
-		
 		#Swap scenes from X to Y
 		get_tree().change_scene_to_packed(new_scene)
-		trans_out()
+		
 		#Hide loading screen and stop processing
 		hide()
 		set_process(false)
@@ -45,13 +44,3 @@ func _process(_delta):
 		print("ERROR: Could not load the level! File path is nonexistent")
 		hide()
 		set_process(false)
-
-func trans_in() -> void:
-	var tween = get_tree().create_tween()
-	tween.tween_property(background.material, "shader_parameter/progress", 1.0, 1.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	await tween.finished
-
-func trans_out() -> void:
-	var tween = get_tree().create_tween()
-	tween.tween_property(background.material, "shader_parameter/progress", 0.0, 1.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
-	await tween.finished
