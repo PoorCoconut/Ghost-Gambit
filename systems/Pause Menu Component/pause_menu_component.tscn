@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://bkrih4wj555nw"]
 
 [ext_resource type="Script" uid="uid://dr0xqtka1wpkl" path="res://systems/Pause Menu Component/pause_menu_component.gd" id="1_txmun"]
-[ext_resource type="Shader" uid="uid://b53gaarmhfcv4" path="res://systems/Pause Menu Component/scrolling_transition_diamond.gdshader" id="2_t0r36"]
+[ext_resource type="Shader" uid="uid://b53gaarmhfcv4" path="res://vfx/shaders/scrolling_transition_diamond.gdshader" id="2_t0r36"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_jh37i"]
 shader = ExtResource("2_t0r36")
