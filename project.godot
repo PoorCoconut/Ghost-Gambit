@@ -55,6 +55,8 @@ folder_colors={
 [global_group]
 
 player=""
+lock=""
+portal=""
 
 [gui]
 

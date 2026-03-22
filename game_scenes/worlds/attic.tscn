@@ -1,11 +1,12 @@
-[gd_scene format=4 uid="uid://dq1rufuetsi3d"]
+[gd_scene format=4 uid="uid://bsmysoxf1oxhc"]
 
 [ext_resource type="Texture2D" uid="uid://bf0hs3317hwcv" path="res://game_assets/tilesets/1 1.png" id="1_737nd"]
 [ext_resource type="Texture2D" uid="uid://15yb1yrd2rad" path="res://game_assets/tilesets/2.png" id="2_6ynv2"]
 [ext_resource type="Texture2D" uid="uid://krqv8a0hl2nt" path="res://game_assets/tilesets/3 (1).png" id="3_0j4ss"]
 [ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="4_wqb6k"]
-[ext_resource type="Script" path="res://game_scenes/worlds/key.gd" id="5_6ynv2"]
+[ext_resource type="Script" uid="uid://wjkbqjlaioml" path="res://game_scenes/worlds/key.gd" id="5_6ynv2"]
 [ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="6_0j4ss"]
+[ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/baseplayer.tscn" id="6_wqb6k"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a0ttk"]
 texture = ExtResource("1_737nd")
@@ -112,6 +113,8 @@ texture_region_size = Vector2i(80, 80)
 
 [sub_resource type="TileSet" id="TileSet_tmmap"]
 tile_size = Vector2i(80, 80)
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Floor 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
@@ -272,17 +275,15 @@ self_modulate = Color(0.43137255, 0.6745098, 0.15686275, 1)
 tile_map_data = PackedByteArray("AAAJAAgAAAACAAAAAAAHAAgAAAACAAAAAAAIAAgAAAACAAAAAAAOAAgAAAACAAAAAAAKAAsAAAACAAAAAAAJAAsAAAACAAAAAAANAAgAAAACAAAAAAAXAPD/AAACAAAAAAAXAPH/AAACAAAAAAAWAPD/AAACAAAAAAAWAPH/AAACAAAAAAAYAPP/AAACAAAAAAAYAPT/AAACAAAAAAAZAPP/AAACAAAAAAAZAPT/AAACAAAAAAAdAP7/AAACAAAAAAAdAP//AAACAAAAAAAeAP7/AAACAAAAAAAeAP//AAACAAAAAAAgAAEAAAACAAAAAAAgAAIAAAACAAAAAAAhAAEAAAACAAAAAAAhAAIAAAACAAAAAAAiAAEAAAACAAAAAAAiAAIAAAACAAAAAAAjAAEAAAACAAAAAAAjAAIAAAACAAAAAAAiAP3/AAACAAAAAAAiAP7/AAACAAAAAAAjAP3/AAACAAAAAAAjAP7/AAACAAAAAAAkAP3/AAACAAAAAAAkAP7/AAACAAAAAAAlAP3/AAACAAAAAAAlAP7/AAACAAAAAADo//X/AAACAAAAAADp//X/AAACAAAAAADo//b/AAACAAAAAADp//b/AAACAAAAAADj//P/AAACAAAAAADj//T/AAACAAAAAADo//f/AAACAAAAAADp//f/AAACAAAAAADk/+//AAACAAAAAADk//D/AAACAAAAAADl/+//AAACAAAAAADl//D/AAACAAAAAADm/+//AAACAAAAAADm//D/AAACAAAAAADh//P/AAACAAAAAADh//T/AAACAAAAAADi//P/AAACAAAAAADi//T/AAACAAAAAADh//X/AAACAAAAAADi//X/AAACAAAAAADj//X/AAACAAAAAADk/wwAAAACAAAAAADk/w0AAAACAAAAAADl/wwAAAACAAAAAADl/w0AAAACAAAAAADm/wwAAAACAAAAAADm/w0AAAACAAAAAADn/wcAAAACAAAAAADn/wgAAAACAAAAAADo/wcAAAACAAAAAADo/wgAAAACAAAAAADp/wcAAAACAAAAAADp/wgAAAACAAAAAAA=")
 tile_set = SubResource("TileSet_tmmap")
 
-[node name="Lock" type="TileMapLayer" parent="." unique_id=68770468]
+[node name="Lock" type="TileMapLayer" parent="." unique_id=68770468 groups=["lock"]]
 self_modulate = Color(0.33333334, 0.5254902, 0.12156863, 1)
 tile_map_data = PackedByteArray("AAAFAAoAAAAAAAIAAAA=")
 tile_set = SubResource("TileSet_a0ttk")
 
-[node name="To Hallway" type="TileMapLayer" parent="." unique_id=1044372839]
+[node name="To Hallway" type="TileMapLayer" parent="." unique_id=1044372839 groups=["portal"]]
 self_modulate = Color(0.8039216, 0.77254903, 0.039215688, 1)
 tile_map_data = PackedByteArray("AAALAAwAAwABAAAAAAA=")
 tile_set = SubResource("TileSet_5vopx")
-
-[node name="WorldCameraComponent" parent="." unique_id=1725945058 instance=ExtResource("4_wqb6k")]
 
 [node name="Key" type="Sprite2D" parent="." unique_id=411314024]
 self_modulate = Color(0.4117647, 0, 0.6862745, 1)
@@ -292,15 +293,27 @@ texture = SubResource("CompressedTexture2D_p6ied")
 region_enabled = true
 region_rect = Rect2(16, 322, 64, 70)
 script = ExtResource("5_6ynv2")
+key_id = "Attic_Key"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Key" unique_id=318041518]
 libraries/ = SubResource("AnimationLibrary_c1xgk")
 autoplay = &"pulse"
 
 [node name="Area2D" type="Area2D" parent="Key" unique_id=876524879]
+collision_layer = 255
+collision_mask = 255
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Key/Area2D" unique_id=710461670]
 position = Vector2(0.4647522, 0.99938965)
 shape = SubResource("RectangleShape2D_737nd")
+debug_color = Color(0.64730924, 0.5216301, 0, 0.41960785)
 
 [node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("6_0j4ss")]
+
+[node name="BasePlayer" parent="." unique_id=240714517 instance=ExtResource("6_wqb6k")]
+position = Vector2(205, 837)
+
+[node name="WorldCameraComponent" parent="BasePlayer" unique_id=1725945058 instance=ExtResource("4_wqb6k")]
+scale = Vector2(2, 2)
+
+[connection signal="body_entered" from="Key/Area2D" to="Key" method="_on_body_entered"]

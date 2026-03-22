@@ -73,6 +73,12 @@ func _on_turn_end():
 	is_turn_processing = true
 	position = target_position 
 	
+	# --- PORTAL CHECK ---
+	var portal_map = get_layer("portal")
+	if portal_map:
+		var current_tile = portal_map.local_to_map(global_position)
+		GameManager.check_for_exit(current_tile, portal_map)
+	
 	if is_blitz_active:
 		blitz_moves_left -= 1
 		if blitz_moves_left > 0:
@@ -87,7 +93,19 @@ func _on_turn_end():
 	await get_tree().create_timer(0.1).timeout
 	is_turn_processing = false
 #pathing
+func get_layer(group_name: String) -> TileMapLayer:
+	return get_tree().get_first_node_in_group(group_name) as TileMapLayer
+
 func check_path_and_action(dir: Vector2):
+	var lock_map = get_layer("lock")
+	if not lock_map: return
+	var current_tile = lock_map.local_to_map(global_position)
+	var target_tile = current_tile + Vector2i(dir.x, dir.y)
+	
+	# --- LOCK CHECK ---
+	if not GameManager.can_move_to_tile(target_tile, lock_map):
+		return
+
 	var next_tile_pos = position + (dir * grid_size)
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsPointQueryParameters2D.new()
@@ -102,6 +120,7 @@ func check_path_and_action(dir: Vector2):
 	if test_move(transform, dir * (grid_size - 5)):
 		return 
 
+	# 4. ALL CLEAR: Proceed to slide
 	execute_slide(next_tile_pos)
 #attack
 func bump_attack(enemy, dir):

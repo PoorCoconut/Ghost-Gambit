@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bf0hs3317hwcv" path="res://game_assets/tilesets/1 1.png" id="1_frqp5"]
 [ext_resource type="Texture2D" uid="uid://15yb1yrd2rad" path="res://game_assets/tilesets/2.png" id="2_m5pnl"]
 [ext_resource type="Texture2D" uid="uid://krqv8a0hl2nt" path="res://game_assets/tilesets/3 (1).png" id="3_hvey0"]
-[ext_resource type="Script" path="res://game_scenes/worlds/key.gd" id="4_hvey0"]
+[ext_resource type="Script" uid="uid://wjkbqjlaioml" path="res://game_scenes/worlds/key.gd" id="4_hvey0"]
 [ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="4_m5pnl"]
 [ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="6_qjdxc"]
 
@@ -276,20 +276,20 @@ position = Vector2(-0.25179958, 0.35590744)
 tile_map_data = PackedByteArray("AAAJAAgAAgACAAEAAAAKAAgAAgACAAEAAAALAAgAAgACAAEAAAAIAAsAAgACAAIAAAAJAAwAAgACAAIAAAALAAwAAgACAAIAAAAMAAsAAgACAAIAAAAIAAUAAgACAAIAAAAJAAUAAgACAAEAAAALAAUAAgACAAIAAAAMAAUAAgACAAEAAAAfAO//AgACAAEAAAAgAO//AgACAAEAAAAhAO//AgACAAEAAAAiAO//AgACAAEAAAAjAO//AgACAAEAAAAhAPP/AgACAAAAAAAfAPf/AgACAAIAAAAjAPf/AgACAAIAAAAcAPP/AgACAAEAAAAmAPP/AgACAAEAAAA=")
 tile_set = SubResource("TileSet_7xg7g")
 
-[node name="Lock" type="TileMapLayer" parent="." unique_id=916238024]
+[node name="Lock" type="TileMapLayer" parent="." unique_id=916238024 groups=["lock"]]
 self_modulate = Color(0.8117647, 0.5686275, 0.36862746, 1)
 position = Vector2(-0.25179958, 0.35590744)
 tile_map_data = PackedByteArray("AAAhAOz/AAAAAAIAAAA=")
 tile_set = SubResource("TileSet_tgyu6")
 
-[node name="To Hallway" type="TileMapLayer" parent="." unique_id=907322111]
+[node name="To Hallway" type="TileMapLayer" parent="." unique_id=907322111 groups=["portal"]]
 self_modulate = Color(0.45000002, 0.6, 0.45000002, 1)
 z_index = -1
 position = Vector2(-0.25179958, 0.35590744)
 tile_map_data = PackedByteArray("AAAhAOz/AwABAAAAAAA=")
 tile_set = SubResource("TileSet_2ilej")
 
-[node name="To Basement" type="TileMapLayer" parent="." unique_id=223463325]
+[node name="To Basement" type="TileMapLayer" parent="." unique_id=223463325 groups=["portal"]]
 self_modulate = Color(0.32634866, 0.09547928, 0.09560302, 1)
 position = Vector2(-0.25179958, 0.35590744)
 tile_map_data = PackedByteArray("AAD//w0AAwABAAAAAAA=")
@@ -318,3 +318,5 @@ shape = SubResource("RectangleShape2D_m5pnl")
 position = Vector2(2677, -1177)
 
 [node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("6_qjdxc")]
+
+[connection signal="body_entered" from="Key/Area2D" to="Key" method="_on_body_entered"]

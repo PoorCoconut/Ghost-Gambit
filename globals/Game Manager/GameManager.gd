@@ -94,11 +94,12 @@ func can_move_to_tile(tile_pos: Vector2i, tilemap: TileMapLayer) -> bool:
 ## LEVEL TRANSITION LOGIC
 func check_for_exit(tile_pos: Vector2i, tilemap: TileMapLayer) -> void:
 	var tile_data = tilemap.get_cell_tile_data(tile_pos)
-	
 	if tile_data:
-		var path = tile_data.get_custom_data("next_level")
+		var path = tile_data.get_custom_data("next_level_path")
+		var spawn_id = tile_data.get_custom_data("target_spawn_id")
 		
 		if path != "":
+			next_spawn_id = spawn_id # Store the ID for the next scene
 			load_next_level(path)
 
 func show_denied_message(at_position: Vector2):
@@ -106,3 +107,4 @@ func show_denied_message(at_position: Vector2):
 	# Center the text slightly
 	text_instance.global_position = at_position - Vector2(40, 60) 
 	get_tree().current_scene.add_child(text_instance)
+var next_spawn_id : String = ""
