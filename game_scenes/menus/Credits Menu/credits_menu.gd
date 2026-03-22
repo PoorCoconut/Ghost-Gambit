@@ -1,6 +1,7 @@
 extends Control
 
 @export_file("*.tscn") var main_menu_path : String
+#GameManager.load_next_level(main_menu_path)
 
 func _ready() -> void:
 	MusicManager.change_music("mainmenu_theme", 0.5)
