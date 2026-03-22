@@ -310,10 +310,11 @@ debug_color = Color(0.64730924, 0.5216301, 0, 0.41960785)
 
 [node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("6_0j4ss")]
 
+[node name="WorldCameraComponent" parent="." unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("4_wqb6k")]
+position = Vector2(205, 837)
+target = NodePath("../BasePlayer")
+
 [node name="BasePlayer" parent="." unique_id=240714517 instance=ExtResource("6_wqb6k")]
 position = Vector2(205, 837)
-
-[node name="WorldCameraComponent" parent="BasePlayer" unique_id=1725945058 instance=ExtResource("4_wqb6k")]
-scale = Vector2(2, 2)
 
 [connection signal="body_entered" from="Key/Area2D" to="Key" method="_on_body_entered"]

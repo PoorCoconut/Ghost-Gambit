@@ -3,6 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bf0hs3317hwcv" path="res://game_assets/tilesets/1 1.png" id="1_8y5jf"]
 [ext_resource type="Texture2D" uid="uid://15yb1yrd2rad" path="res://game_assets/tilesets/2.png" id="2_pjk7a"]
 [ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="3_pjk7a"]
+[ext_resource type="PackedScene" uid="uid://d1shkjfwmu0ye" path="res://game_scenes/En-Tities/Scenes/king.tscn" id="4_wtgq8"]
+[ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/baseplayer.tscn" id="5_0wldx"]
+[ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="6_g1ocp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wtkb"]
 texture = ExtResource("1_8y5jf")
@@ -141,3 +144,12 @@ tile_map_data = PackedByteArray("AAACAAIAAAABAAEAAAAHAAIAAAABAAEAAAAIAAIAAAACAAU
 tile_set = SubResource("TileSet_0oo02")
 
 [node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("3_pjk7a")]
+
+[node name="King" parent="." unique_id=240714517 instance=ExtResource("4_wtgq8")]
+position = Vector2(401, -1)
+
+[node name="BasePlayer" parent="." unique_id=959095089 instance=ExtResource("5_0wldx")]
+position = Vector2(360, 1078)
+
+[node name="WorldCameraComponent" parent="." unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("6_g1ocp")]
+target = NodePath("../BasePlayer")

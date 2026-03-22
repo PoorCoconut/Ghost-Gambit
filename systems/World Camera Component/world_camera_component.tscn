@@ -4,4 +4,5 @@
 
 [node name="WorldCameraComponent" type="Camera2D" unique_id=1725945058 groups=["camera"]]
 anchor_mode = 0
+position_smoothing_enabled = true
 script = ExtResource("1_u3ou4")
