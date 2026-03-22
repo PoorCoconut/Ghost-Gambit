@@ -2,9 +2,8 @@
 
 [ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="1_dll30"]
 [ext_resource type="Script" uid="uid://xlf878422jy3" path="res://game_scenes/worlds/world_test.gd" id="1_oaopk"]
-[ext_resource type="PackedScene" uid="uid://be8jw63t68sxd" path="res://actors/player/top_down_player.tscn" id="2_45fix"]
 [ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="3_45fix"]
-[ext_resource type="PackedScene" uid="uid://begvhj5jhxtcv" path="res://actors/player/platformer_player.tscn" id="3_hal7r"]
+[ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/baseplayer.tscn" id="5_oaopk"]
 [ext_resource type="PackedScene" uid="uid://b5kib01h7s7am" path="res://systems/Camera Limit Zone Component/camera_limit_zone_component.tscn" id="6_1jghj"]
 
 [sub_resource type="Gradient" id="Gradient_dll30"]
@@ -26,9 +25,8 @@ offset_right = 640.0
 offset_bottom = 360.0
 texture = SubResource("GradientTexture2D_45fix")
 
-[node name="WorldCameraComponent" parent="." unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("1_dll30")]
+[node name="WorldCameraComponent" parent="." unique_id=1725945058 instance=ExtResource("1_dll30")]
 position_smoothing_enabled = true
-target = NodePath("../TopDownPlayer")
 
 [node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("3_45fix")]
 menu_path = "uid://camlgx74mlna4"
@@ -87,11 +85,7 @@ offset_right = 518.0
 offset_bottom = 271.0
 text = "Threat--"
 
-[node name="TopDownPlayer" parent="." unique_id=1775689760 instance=ExtResource("2_45fix")]
-position = Vector2(304, 88)
-
-[node name="PlatformerPlayer" parent="." unique_id=240714517 instance=ExtResource("3_hal7r")]
-position = Vector2(304, 224)
+[node name="BasePlayer" parent="." unique_id=240714517 instance=ExtResource("5_oaopk")]
 
 [connection signal="pressed" from="PlaySfx" to="." method="_on_play_sfx_pressed"]
 [connection signal="pressed" from="PlayMusic1" to="." method="_on_play_music_1_pressed"]

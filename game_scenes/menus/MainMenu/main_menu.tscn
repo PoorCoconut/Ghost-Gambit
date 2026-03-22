@@ -47,7 +47,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h6sl1")
-next_level_path = "uid://cbh3de4aa1ibn"
+next_level_path = "uid://dwitej5m0dkwd"
 credits_path = "uid://biv56ubukgsaq"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=29496978]

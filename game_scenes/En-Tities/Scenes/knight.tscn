@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://c2a6nqcbo36b"]
+
+[ext_resource type="Script" uid="uid://46phllfufu8y" path="res://game_scenes/En-Tities/Scripts/knight.gd" id="1_k3kod"]
+[ext_resource type="Texture2D" uid="uid://cdq1w16bsklp2" path="res://icon.svg" id="2_r2364"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xboos"]
+radius = 56.0
+
+[node name="knight" type="CharacterBody2D" unique_id=240714517 groups=["player"]]
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_k3kod")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1965004166]
+texture = ExtResource("2_r2364")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=438437244]
+shape = SubResource("CircleShape2D_xboos")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=570205917]
+target_position = Vector2(0, 80)
+collision_mask = 7
