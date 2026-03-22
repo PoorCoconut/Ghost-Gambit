@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bf0hs3317hwcv" path="res://game_assets/tilesets/1 1.png" id="1_frqp5"]
 [ext_resource type="Texture2D" uid="uid://15yb1yrd2rad" path="res://game_assets/tilesets/2.png" id="2_m5pnl"]
 [ext_resource type="Texture2D" uid="uid://krqv8a0hl2nt" path="res://game_assets/tilesets/3 (1).png" id="3_hvey0"]
+[ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="4_m5pnl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_frqp5"]
 texture = ExtResource("1_frqp5")
@@ -44,6 +45,7 @@ texture_region_size = Vector2i(80, 80)
 1:1/0 = 0
 0:4/0 = 0
 1:4/0 = 0
+0:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_kmtg6"]
 tile_size = Vector2i(80, 80)
@@ -65,6 +67,7 @@ texture_region_size = Vector2i(80, 80)
 2:1/0 = 0
 2:2/0 = 0
 2:3/0 = 0
+0:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_7aaw5"]
 tile_size = Vector2i(80, 80)
@@ -105,6 +108,7 @@ texture_region_size = Vector2i(80, 80)
 texture = ExtResource("2_m5pnl")
 texture_region_size = Vector2i(80, 80)
 1:4/0 = 0
+0:1/0 = 0
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y548x"]
 texture = ExtResource("3_hvey0")
@@ -227,7 +231,7 @@ tile_set = SubResource("TileSet_kmtg6")
 [node name="Props" type="TileMapLayer" parent="." unique_id=1922100369]
 self_modulate = Color(0.8117647, 0.5686275, 0.36862746, 0.72156864)
 position = Vector2(-0.25179958, 0.35590744)
-tile_map_data = PackedByteArray("AAD2//3/AgACAAAAAAABAP7/AgACAAEAAAAAAP7/AgACAAIAAAACAAgAAgACAAMAAAABAAYAAgACAAMAAAD+/wAAAgACAAMAAAD5/wAAAgACAAMAAAAGAAgAAgACAAMAAAAOAAgAAgACAAMAAAAOAAkAAgACAAMAAAAKAAMAAgACAAMAAAAhAAkAAgACAAMAAAAnAAUAAgACAAMAAAAhAAEAAgACAAMAAAAbAAUAAgACAAMAAAAeABAAAgACAAMAAAAgAA0AAgACAAIAAAAiAA0AAgACAAIAAAAmAA4AAgACAAEAAAAlAA4AAgACAAIAAAAqAAMAAgACAAAAAAAtAAMAAgACAAAAAAAxAPn/AgACAAAAAAAKAP//AgACAAIAAAATAAEAAgACAAEAAAASAAEAAgACAAAAAAAgAOz/AgACAAAAAAAiAOz/AgACAAAAAAAcAOz/AgACAAAAAAAdAOz/AgACAAAAAAAeAOz/AgACAAAAAAAfAOz/AgACAAAAAAAjAOz/AgACAAAAAAAkAOz/AgACAAAAAAAlAOz/AgACAAAAAAAmAOz/AgACAAAAAAAbAO3/AgACAAAAAAAnAO3/AgACAAAAAAD2/wEAAgACAAIAAAD3/wEAAgACAAEAAAASAA8AAgACAAAAAAAhAAQAAgACAAIAAAAeAAYAAgACAAIAAAAiAAQAAgACAAEAAAAbAPP/AgACAAIAAAAnAPP/AgACAAIAAAAeAPD/AgACAAIAAAAkAPD/AgACAAIAAAA=")
+tile_map_data = PackedByteArray("AAD2//3/AgACAAAAAAABAP7/AgACAAEAAAAAAP7/AgACAAIAAAACAAgAAgACAAMAAAABAAYAAgACAAMAAAD+/wAAAgACAAMAAAD5/wAAAgACAAMAAAAGAAgAAgACAAMAAAAOAAgAAgACAAMAAAAOAAkAAgACAAMAAAAKAAMAAgACAAMAAAAhAAkAAgACAAMAAAAnAAUAAgACAAMAAAAhAAEAAgACAAMAAAAbAAUAAgACAAMAAAAeABAAAgACAAMAAAAgAA0AAgACAAIAAAAiAA0AAgACAAIAAAAmAA4AAgACAAEAAAAlAA4AAgACAAIAAAAqAAMAAgACAAAAAAAtAAMAAgACAAAAAAAxAPn/AgACAAAAAAAKAP//AgACAAIAAAATAAEAAgACAAEAAAASAAEAAgACAAAAAAAgAOz/AgACAAAAAAAiAOz/AgACAAAAAAAcAOz/AgACAAAAAAAdAOz/AgACAAAAAAAeAOz/AgACAAAAAAAfAOz/AgACAAAAAAAjAOz/AgACAAAAAAAkAOz/AgACAAAAAAAlAOz/AgACAAAAAAAmAOz/AgACAAAAAAAbAO3/AgACAAAAAAAnAO3/AgACAAAAAAD2/wEAAgACAAIAAAD3/wEAAgACAAEAAAASAA8AAgACAAAAAAAhAAQAAgACAAIAAAAeAAYAAgACAAIAAAAiAAQAAgACAAEAAAAbAPP/AgACAAIAAAAnAPP/AgACAAIAAAAeAPD/AgACAAIAAAAkAPD/AgACAAIAAAD//woAAgAAAAEAAAATAAkAAgAAAAEAAAD1/wMAAgAAAAEAAAAfABIAAgAAAAEAAAAnABEAAgAAAAEAAAAsAAYAAgAAAAEAAAAwAP//AgAAAAEAAAAzAPz/AgAAAAEAAAAPAAUAAgAAAAEAAAAiAPX/AgAAAAEAAAAbAPD/AgAAAAEAAAA=")
 tile_set = SubResource("TileSet_7aaw5")
 
 [node name="Obstacles" type="TileMapLayer" parent="." unique_id=1063518917]
@@ -236,14 +240,14 @@ position = Vector2(-0.25179958, 0.35590744)
 tile_map_data = PackedByteArray("AAAJAAgAAgACAAEAAAAKAAgAAgACAAEAAAALAAgAAgACAAEAAAAIAAsAAgACAAIAAAAJAAwAAgACAAIAAAALAAwAAgACAAIAAAAMAAsAAgACAAIAAAAIAAUAAgACAAIAAAAJAAUAAgACAAEAAAALAAUAAgACAAIAAAAMAAUAAgACAAEAAAAfAO//AgACAAEAAAAgAO//AgACAAEAAAAhAO//AgACAAEAAAAiAO//AgACAAEAAAAjAO//AgACAAEAAAAhAPP/AgACAAAAAAAfAPf/AgACAAIAAAAjAPf/AgACAAIAAAAcAPP/AgACAAEAAAAmAPP/AgACAAEAAAAhAOz/AAAAAAIAAAA=")
 tile_set = SubResource("TileSet_7xg7g")
 
-[node name="Exit" type="TileMapLayer" parent="." unique_id=907322111]
+[node name="To Hallway" type="TileMapLayer" parent="." unique_id=907322111]
 self_modulate = Color(0.45000002, 0.6, 0.45000002, 1)
 z_index = -1
 position = Vector2(-0.25179958, 0.35590744)
 tile_map_data = PackedByteArray("AAAhAOz/AwABAAAAAAA=")
 tile_set = SubResource("TileSet_2ilej")
 
-[node name="Entrance" type="TileMapLayer" parent="." unique_id=223463325]
+[node name="To Basement" type="TileMapLayer" parent="." unique_id=223463325]
 self_modulate = Color(0.32634866, 0.09547928, 0.09560302, 1)
 position = Vector2(-0.25179958, 0.35590744)
 tile_map_data = PackedByteArray("AAD//w0AAwABAAAAAAA=")
@@ -260,3 +264,6 @@ region_rect = Rect2(88, 245, 64, 77)
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Key" unique_id=390460787]
 libraries/ = SubResource("AnimationLibrary_pmxuq")
 autoplay = &"pulse"
+
+[node name="WorldCameraComponent" parent="." unique_id=1725945058 instance=ExtResource("4_m5pnl")]
+position = Vector2(2677, -1177)
