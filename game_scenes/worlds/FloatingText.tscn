@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://dwlmukky0w1mx"]
+
+[ext_resource type="FontFile" uid="uid://du1a0wbd3c3w0" path="res://game_assets/fonts/atalon/Atalon.otf" id="1_rxjcx"]
+[ext_resource type="Script" uid="uid://b5erj8ust8yy3" path="res://label.gd" id="2_rgjak"]
+
+[node name="Label" type="Label" unique_id=1498925533]
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_colors/font_color = Color(0.5333242, 1.0949746e-06, 2.8878452e-07, 1)
+theme_override_colors/font_outline_color = Color(0.23529412, 0.23529412, 0.23529412, 1)
+theme_override_constants/outline_size = 1
+theme_override_fonts/font = ExtResource("1_rxjcx")
+text = "Door Locked!
+You need a KEY"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("2_rgjak")

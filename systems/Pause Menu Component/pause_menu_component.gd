@@ -10,7 +10,7 @@ extends CanvasLayer
 @onready var background : TextureRect = $Background
 @onready var pause_menu : Control = $PauseMenu
 
-@export_file("*.tscn") var menu_path : String
+@export_file("*.tscn") var menu_path : String = "res://game_scenes/menus/MainMenu/main_menu.tscn"
 
 # --- AUDIO MUFFLE VARIABLES ---
 var music_bus_idx : int
