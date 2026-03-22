@@ -84,6 +84,8 @@ func take_damage(amount: int):
 #just duke mfker
 func receive_knockback(dir: Vector2):
 	take_damage(1)
+	if health<=0: return
+	
 	var target = position + (dir * grid_size)
 	if not test_move(transform, dir * (grid_size - 5)):
 		var tween = create_tween()
