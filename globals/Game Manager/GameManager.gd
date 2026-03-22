@@ -95,8 +95,8 @@ func can_move_to_tile(tile_pos: Vector2i, tilemap: TileMapLayer) -> bool:
 func check_for_exit(tile_pos: Vector2i, tilemap: TileMapLayer) -> void:
 	var tile_data = tilemap.get_cell_tile_data(tile_pos)
 	if tile_data:
-		var path = tile_data.get_custom_data("next_level_path")
-		var spawn_id = tile_data.get_custom_data("target_spawn_id")
+		var path = tile_data.get_custom_data("next_level")
+		var spawn_id = tile_data.get_custom_data("spawn_point")
 		
 		if path != "":
 			next_spawn_id = spawn_id # Store the ID for the next scene

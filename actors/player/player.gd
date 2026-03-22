@@ -32,6 +32,22 @@ func _ready():
 	health = max_hp
 	Events.player_hp_updated.emit(health, max_hp)
 
+func _process(_delta):
+	if GameManager.next_spawn_id != "":
+		setup_position_from_spawn()
+
+func setup_position_from_spawn():
+	var spawn_nodes = get_tree().get_nodes_in_group("spawn_points")
+	for spawn in spawn_nodes:
+		if spawn.name == GameManager.next_spawn_id:
+			# Teleport player to the marker
+			global_position = spawn.global_position
+			GameManager.next_spawn_id = "" 
+			
+			# Re-sync your grid logic
+			target_position = global_position
+			return
+
 func _physics_process(_delta):
 	if is_moving or is_turn_processing: return
 
