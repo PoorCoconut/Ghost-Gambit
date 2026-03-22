@@ -26,7 +26,7 @@ func spawn_pawn():
 	if pawn_scene:
 		var lane = randi() % 8 - 4
 		
-		var spawn_x = global_position.x + (lane * grid_size) + (grid_size / 2)
+		var spawn_x = global_position.x + (lane * grid_size) + (grid_size / 2.0)
 		var spawn_y = position.y + (grid_size * 1.0) + grid_size*0.5 
 		
 		take_damage(1)

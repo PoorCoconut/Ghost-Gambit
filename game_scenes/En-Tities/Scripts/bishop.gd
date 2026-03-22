@@ -52,7 +52,7 @@ func process_diagonal_kiting():
 	for dir in directions:
 		for distance in range(1, 3):
 			var target = my_grid + (dir * distance)
-			var target_px = (Vector2(target) * grid_size) + Vector2(grid_size/2, grid_size/2)
+			var target_px = (Vector2(target) * grid_size) + Vector2(grid_size/2, grid_size/2.0)
 			
 			if is_tile_blocked(target_px): break 
 			
