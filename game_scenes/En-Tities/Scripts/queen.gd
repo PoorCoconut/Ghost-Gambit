@@ -12,10 +12,13 @@ var player: CharacterBody2D
 var is_moving: bool = false
 var death_countdown: int = 4
 
+@onready var sprite:Sprite2D = $Sprite
+
 func _ready():
 	add_to_group("enemies")
 	modulate = Color(0.1, 0.1, 0.1)
 	position = (Vector2i(position / grid_size) * grid_size) + Vector2i(grid_size/2, grid_size/2)
+	sprite.frame = 0
 	
 	player = get_tree().get_first_node_in_group("player")
 	if player and player.has_signal("moved_one_tile"):
@@ -28,12 +31,16 @@ func _on_player_turn_finished():
 	
 	match current_state:
 		State.DYING:
+			sprite.frame = 0
 			process_death_countdown()
 		State.HUNTING:
+			sprite.frame = 1
 			process_queen_logic()
 		State.WINDING:
+			sprite.frame = 1
 			execute_queen_dash()
 		State.COOLDOWN:
+			sprite.frame = 0
 			current_state = State.HUNTING
 			modulate = Color(0.1, 0.1, 0.1)
 

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c2a6nqcbo36b"]
 
 [ext_resource type="Script" uid="uid://46phllfufu8y" path="res://game_scenes/En-Tities/Scripts/knight.gd" id="1_k3kod"]
-[ext_resource type="Texture2D" uid="uid://cdq1w16bsklp2" path="res://icon.svg" id="2_r2364"]
+[ext_resource type="Texture2D" uid="uid://dmfo8j5bpka6o" path="res://game_assets/sprites/knight.png" id="2_k3kod"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xboos"]
 radius = 56.0
@@ -13,7 +13,8 @@ collision_mask = 6
 script = ExtResource("1_k3kod")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1965004166]
-texture = ExtResource("2_r2364")
+texture = ExtResource("2_k3kod")
+hframes = 2
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=438437244]
 shape = SubResource("CircleShape2D_xboos")

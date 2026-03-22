@@ -7,6 +7,9 @@ var turn_counter: int = 0
 var spawn_timer: int = 1
 var min_wait: int = 6
 var max_wait: int = 10
+
+@onready var sprite:Sprite2D = $Sprite
+
 func _ready():
 	#spawn ig
 	add_to_group("enemies")
@@ -19,6 +22,7 @@ func _on_player_turn():
 	spawn_timer -= 1
 	
 	if spawn_timer <= 0:
+		sprite.frame = 1
 		spawn_pawn()
 		spawn_timer = min_wait + (randi() % 5)
 #spawn helper
@@ -45,6 +49,7 @@ func flash_king():
 	modulate = Color(5, 5, 0)
 	var t = create_tween()
 	t.tween_property(self, "modulate", Color(1, 1, 1), 0.3)
+	sprite.frame = 0
 #useless tbh
 func take_damage(amount: int):
 	health -= amount

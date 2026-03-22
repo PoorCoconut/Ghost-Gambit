@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://d1shkjfwmu0ye"]
 
 [ext_resource type="Script" uid="uid://bngi0v6s1v0nl" path="res://game_scenes/En-Tities/Scripts/king.gd" id="1_48fh1"]
-[ext_resource type="Texture2D" uid="uid://cdq1w16bsklp2" path="res://icon.svg" id="2_5f6bv"]
+[ext_resource type="Texture2D" uid="uid://wrk4ltpsgnno" path="res://game_assets/sprites/king.png" id="2_48fh1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8frb"]
 size = Vector2(128, 128)
@@ -12,7 +12,8 @@ collision_mask = 7
 script = ExtResource("1_48fh1")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1965004166]
-texture = ExtResource("2_5f6bv")
+texture = ExtResource("2_48fh1")
+hframes = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=543913376]
 shape = SubResource("RectangleShape2D_v8frb")
