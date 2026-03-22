@@ -1,6 +1,21 @@
 [gd_scene format=3 uid="uid://bkrih4wj555nw"]
 
 [ext_resource type="Script" uid="uid://dr0xqtka1wpkl" path="res://systems/Pause Menu Component/pause_menu_component.gd" id="1_txmun"]
+[ext_resource type="Shader" uid="uid://b53gaarmhfcv4" path="res://systems/Pause Menu Component/scrolling_transition_diamond.gdshader" id="2_t0r36"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_jh37i"]
+shader = ExtResource("2_t0r36")
+shader_parameter/rotate_degree = 19.80000029504376
+shader_parameter/move_degree = 300.7000044807908
+shader_parameter/speed = 0.10000000475
+shader_parameter/scale = 0.2
+shader_parameter/gap = Vector2(0, 0)
+shader_parameter/node_scale = Vector2(1, 0.6)
+shader_parameter/progress = 0.0
+shader_parameter/diamondPixelSize = 100.0
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wl6mi"]
+load_path = "res://.godot/imported/black_square.png-742fbdc48786e5abeb0e88dcc7443f6b.ctex"
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hv2t2"]
 content_margin_left = 20.0
@@ -14,7 +29,17 @@ process_mode = 3
 layer = 2
 script = ExtResource("1_txmun")
 
-[node name="Control" type="Control" parent="." unique_id=1764194994]
+[node name="Background" type="TextureRect" parent="." unique_id=227818396]
+material = SubResource("ShaderMaterial_jh37i")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CompressedTexture2D_wl6mi")
+
+[node name="PauseMenu" type="Control" parent="." unique_id=1764194994]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -22,7 +47,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="Control" unique_id=1856583056]
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu" unique_id=1856583056]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -34,93 +59,111 @@ theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 50
 theme_override_constants/margin_bottom = 50
 
-[node name="PanelContainer" type="PanelContainer" parent="Control/MarginContainer" unique_id=1521460959]
+[node name="PanelContainer" type="PanelContainer" parent="PauseMenu/MarginContainer" unique_id=1521460959]
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_hv2t2")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MarginContainer/PanelContainer" unique_id=1961909678]
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/MarginContainer/PanelContainer" unique_id=159775881]
+layout_mode = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/MarginContainer/PanelContainer/MarginContainer" unique_id=1961909678]
 layout_mode = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="PausedLabel" type="Label" parent="Control/MarginContainer/PanelContainer/VBoxContainer" unique_id=1684916115]
+[node name="PausedLabel" type="RichTextLabel" parent="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1489425853]
 layout_mode = 2
-text = "GAME PAUSED"
+theme_override_font_sizes/normal_font_size = 128
+bbcode_enabled = true
+text = "[wave amp=50.0]GAME PAUSED"
+fit_content = true
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="MasterVolume" type="HBoxContainer" parent="Control/MarginContainer/PanelContainer/VBoxContainer" unique_id=632613896]
+[node name="Control" type="Control" parent="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=627034912]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+
+[node name="MasterVolume" type="HBoxContainer" parent="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=632613896]
 layout_mode = 2
 theme_override_constants/separation = 16
 
-[node name="Label" type="Label" parent="Control/MarginContainer/PanelContainer/VBoxContainer/MasterVolume" unique_id=1763379922]
+[node name="Label" type="Label" parent="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MasterVolume" unique_id=1763379922]
 layout_mode = 2
 text = "Master"
 
-[node name="VolMasterSlider" type="HSlider" parent="Control/MarginContainer/PanelContainer/VBoxContainer/MasterVolume" unique_id=887957647]
+[node name="VolMasterSlider" type="HSlider" parent="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MasterVolume" unique_id=887957647]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 max_value = 2.0
 step = 0.1
 
-[node name="MusicVolume" type="HBoxContainer" parent="Control/MarginContainer/PanelContainer/VBoxContainer" unique_id=664460231]
+[node name="MusicVolume" type="HBoxContainer" parent="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=664460231]
 layout_mode = 2
 theme_override_constants/separation = 21
 
-[node name="Label" type="Label" parent="Control/MarginContainer/PanelContainer/VBoxContainer/MusicVolume" unique_id=802494276]
+[node name="Label" type="Label" parent="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MusicVolume" unique_id=802494276]
 layout_mode = 2
 text = "Music"
 
-[node name="VolMusicSlider" type="HSlider" parent="Control/MarginContainer/PanelContainer/VBoxContainer/MusicVolume" unique_id=2011425788]
+[node name="VolMusicSlider" type="HSlider" parent="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MusicVolume" unique_id=2011425788]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 max_value = 2.0
 step = 0.1
 
-[node name="SFXVolume" type="HBoxContainer" parent="Control/MarginContainer/PanelContainer/VBoxContainer" unique_id=133005083]
+[node name="SFXVolume" type="HBoxContainer" parent="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=133005083]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="Label" type="Label" parent="Control/MarginContainer/PanelContainer/VBoxContainer/SFXVolume" unique_id=143706060]
+[node name="Label" type="Label" parent="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SFXVolume" unique_id=143706060]
 layout_mode = 2
 text = "SFX"
 
-[node name="VolSFXSlider" type="HSlider" parent="Control/MarginContainer/PanelContainer/VBoxContainer/SFXVolume" unique_id=271924846]
+[node name="VolSFXSlider" type="HSlider" parent="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SFXVolume" unique_id=271924846]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 max_value = 2.0
 step = 0.1
 
-[node name="Stretcher" type="Control" parent="Control/MarginContainer/PanelContainer/VBoxContainer" unique_id=2072005496]
+[node name="Stretcher" type="Control" parent="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=2072005496]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/MarginContainer/PanelContainer/VBoxContainer" unique_id=1811136349]
+[node name="MarginContainer" type="MarginContainer" parent="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1811136349]
 layout_mode = 2
 theme_override_constants/margin_left = 75
 theme_override_constants/margin_right = 75
 
-[node name="ButtonContainer" type="HBoxContainer" parent="Control/MarginContainer/PanelContainer/VBoxContainer/MarginContainer" unique_id=570182566]
+[node name="ButtonContainer" type="HBoxContainer" parent="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer" unique_id=570182566]
 layout_mode = 2
 theme_override_constants/separation = 50
 alignment = 1
 
-[node name="MenuButton" type="Button" parent="Control/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/ButtonContainer" unique_id=225897587]
+[node name="MenuButton" type="Button" parent="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ButtonContainer" unique_id=225897587]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "GO TO MENU"
 
-[node name="BackButton" type="Button" parent="Control/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/ButtonContainer" unique_id=1393547418]
+[node name="BackButton" type="Button" parent="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ButtonContainer" unique_id=1393547418]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
 text = "RESUME"
 
-[connection signal="value_changed" from="Control/MarginContainer/PanelContainer/VBoxContainer/MasterVolume/VolMasterSlider" to="." method="_on_vol_master_slider_value_changed"]
-[connection signal="value_changed" from="Control/MarginContainer/PanelContainer/VBoxContainer/MusicVolume/VolMusicSlider" to="." method="_on_vol_music_slider_value_changed"]
-[connection signal="value_changed" from="Control/MarginContainer/PanelContainer/VBoxContainer/SFXVolume/VolSFXSlider" to="." method="_on_vol_sfx_slider_value_changed"]
-[connection signal="pressed" from="Control/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/ButtonContainer/MenuButton" to="." method="_on_menu_button_pressed"]
-[connection signal="pressed" from="Control/MarginContainer/PanelContainer/VBoxContainer/MarginContainer/ButtonContainer/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="value_changed" from="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MasterVolume/VolMasterSlider" to="." method="_on_vol_master_slider_value_changed"]
+[connection signal="value_changed" from="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MusicVolume/VolMusicSlider" to="." method="_on_vol_music_slider_value_changed"]
+[connection signal="value_changed" from="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/SFXVolume/VolSFXSlider" to="." method="_on_vol_sfx_slider_value_changed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ButtonContainer/MenuButton" to="." method="_on_menu_button_pressed"]
+[connection signal="pressed" from="PauseMenu/MarginContainer/PanelContainer/MarginContainer/VBoxContainer/MarginContainer/ButtonContainer/BackButton" to="." method="_on_back_button_pressed"]

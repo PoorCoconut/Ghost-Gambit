@@ -31,7 +31,6 @@ position_smoothing_enabled = true
 target = NodePath("../TopDownPlayer")
 
 [node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("3_45fix")]
-visible = false
 menu_path = "uid://camlgx74mlna4"
 
 [node name="CameraLimitZoneComponent" parent="." unique_id=276472449 instance=ExtResource("6_1jghj")]

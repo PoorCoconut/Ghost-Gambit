@@ -96,7 +96,6 @@ text = "EXIT"
 
 [node name="SettingsContainer" type="MarginContainer" parent="." unique_id=386881365]
 unique_name_in_owner = true
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -114,12 +113,13 @@ theme_override_constants/tab_separation = 10
 theme_override_styles/panel = SubResource("StyleBoxFlat_oqmwn")
 theme_override_styles/tab_selected = SubResource("StyleBoxFlat_c5njb")
 theme_override_styles/tab_focus = SubResource("StyleBoxEmpty_3phpx")
-current_tab = 0
+current_tab = 1
 tab_0/title = "General"
 tab_1/title = "Viewport"
 tab_2/title = "Controls"
 
 [node name="GeneralSettings" type="MarginContainer" parent="SettingsContainer/SettingsTabs" unique_id=1393486794]
+visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 40
@@ -210,7 +210,6 @@ size_flags_horizontal = 4
 text = "RESET GAME"
 
 [node name="ViewportSettings" type="MarginContainer" parent="SettingsContainer/SettingsTabs" unique_id=2086456263]
-visible = false
 layout_mode = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 40
@@ -238,6 +237,7 @@ text = "Screen Resolution"
 
 [node name="ScreenResAccordion2" type="FoldableContainer" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/ScreenResolution" unique_id=1578316268]
 layout_mode = 2
+size_flags_vertical = 4
 folded = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/ScreenResolution/ScreenResAccordion2" unique_id=1557384518]
@@ -266,6 +266,7 @@ text = "Window Mode"
 
 [node name="WindowModeAccordion" type="FoldableContainer" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/WindowMode" unique_id=1854593696]
 layout_mode = 2
+size_flags_vertical = 4
 folded = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/WindowMode/WindowModeAccordion" unique_id=1726534731]
