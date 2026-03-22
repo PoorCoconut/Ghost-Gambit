@@ -262,8 +262,7 @@ position = Vector2(66, 992)
 position = Vector2(8464, 200)
 
 [node name="BasePlayer" parent="." unique_id=240714517 instance=ExtResource("5_acoja")]
-position = Vector2(8464, 40)
+position = Vector2(66, 992)
 
-[node name="WorldCameraComponent" parent="BasePlayer" unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("4_2rebh")]
+[node name="WorldCameraComponent" parent="BasePlayer" unique_id=1725945058 instance=ExtResource("4_2rebh")]
 scale = Vector2(2, 2)
-target = NodePath("")
