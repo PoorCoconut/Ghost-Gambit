@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cmy80osjkjhr1"]
 
 [ext_resource type="Script" uid="uid://qecin7apwk6k" path="res://game_scenes/En-Tities/Scripts/rook.gd" id="1_acm24"]
-[ext_resource type="Texture2D" uid="uid://cdq1w16bsklp2" path="res://icon.svg" id="2_ha22f"]
+[ext_resource type="Texture2D" uid="uid://hbnwu16df1ja" path="res://game_assets/sprites/rook.png" id="2_acm24"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_xboos"]
 radius = 56.0
@@ -13,7 +13,9 @@ collision_mask = 6
 script = ExtResource("1_acm24")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1965004166]
-texture = ExtResource("2_ha22f")
+texture = ExtResource("2_acm24")
+offset = Vector2(5, 0)
+hframes = 2
 
 [node name="Collision" type="CollisionShape2D" parent="." unique_id=438437244]
 shape = SubResource("CircleShape2D_xboos")

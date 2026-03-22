@@ -14,10 +14,13 @@ var is_charging: bool = false
 var cooldown_turns: int = 0 
 var player: CharacterBody2D
 
+@onready var sprite:Sprite2D = $Sprite
+
 func _ready():
 	health = max_hp
 	add_to_group("enemies")
 	modulate = Color(0, 0.6, 1)
+	sprite.frame = 0
 	position = position.snapped(Vector2(grid_size, grid_size)) + Vector2(grid_size/2, grid_size/2)
 	
 	player = get_tree().get_first_node_in_group("player")
@@ -47,6 +50,7 @@ func check_for_alignment():
 		
 		var move_dir = Vector2(sign(diff.x), sign(diff.y))
 		var distance_tiles = abs(diff.x) + abs(diff.y)
+		sprite.frame = 0
 		
 		if distance_tiles == 1:
 			if not is_charging:
@@ -57,6 +61,7 @@ func check_for_alignment():
 		
 		if is_charging:
 			is_charging = false
+			sprite.frame = 1
 			modulate = Color(0, 0.6, 1)
 
 		var steps = distance_tiles - 1
@@ -65,11 +70,13 @@ func check_for_alignment():
 #telegraph
 func wind_up():
 	is_charging = true
+	sprite.frame = 1
 	modulate = Color(5, 5, 0) 
 #hiteu palyer
 func attack_player():
 	is_moving = true
 	is_charging = false
+	sprite.frame = 1
 	modulate = Color(0, 0.6, 1)
 	
 	var dir_to_player = (player.position - position).normalized()
@@ -94,6 +101,7 @@ func scan_and_jump(dir: Vector2, max_steps: int):
 		possible_steps = i
 	
 	if possible_steps > 0:
+		sprite.frame = 1
 		perform_jump(dir, possible_steps)
 #dasheu
 func perform_jump(dir: Vector2, steps: int):

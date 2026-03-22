@@ -5,6 +5,11 @@ signal moved_one_tile
 @export var grid_size: int = 80
 @export var move_speed: float = 0.15
 @export var max_hp: int = 10
+var icon_pawn: Texture2D = preload("res://game_assets/HUD_Assets/Ability_icons/pawn.png")
+var icon_knight: Texture2D = preload("res://game_assets/HUD_Assets/Ability_icons/knight.png")
+var icon_rook: Texture2D = preload("res://game_assets/HUD_Assets/Ability_icons/Rook.png")
+var icon_bishop: Texture2D = preload("res://game_assets/HUD_Assets/Ability_icons/bishop.png")
+var icon_queen: Texture2D = preload("res://game_assets/HUD_Assets/Ability_icons/queen.png")
 
 var health: int = max_hp
 var is_moving: bool = false
@@ -23,6 +28,7 @@ func _ready():
 	position = position.snapped(Vector2(grid_size, grid_size)) + Vector2(grid_size/2, grid_size/2)
 	target_position = position
 	health = max_hp
+	Events.player_hp_updated.emit(health, max_hp)
 
 func _physics_process(_delta):
 	if is_moving or is_turn_processing: return
@@ -42,6 +48,15 @@ func _physics_process(_delta):
 		last_dir = input_dir
 		check_path_and_action(input_dir)
 #maybe add special effect when you get essesnce, like sound or somthing
+func get_icon_for_type(type: String) -> Texture2D:
+	match type:
+		"Pawn":   return icon_pawn
+		"Knight": return icon_knight
+		"Rook":   return icon_rook
+		"Bishop": return icon_bishop
+		"Queen":  return icon_queen
+	return null
+
 func add_essence_to_queue(type: String):
 	if essence_queue.size() >= max_queue_size:
 		return
@@ -49,8 +64,14 @@ func add_essence_to_queue(type: String):
 	if essence_queue.has(type):
 		return 
 	essence_queue.push_back(type)
+	
+	Events.ability_stolen.emit({
+		"type":type,
+		"icon":get_icon_for_type(type)
+	})
 #using skills
 func execute_stolen_skill(type: String):
+	Events.ability_used.emit()
 	match type:
 		"Pawn":
 			is_shielded = true
@@ -63,6 +84,7 @@ func execute_stolen_skill(type: String):
 			execute_fortress_swap(last_dir)
 		"Bishop":
 			health = max_hp
+			Events.player_hp_updated.emit(health,max_hp)
 			modulate = Color(0.5, 10, 0.5)
 			get_tree().create_timer(0.4).timeout.connect(reset_visuals)
 		"Queen":
@@ -210,6 +232,7 @@ func take_damage(amount: int):
 	health -= amount
 	modulate = Color(10, 0, 0)
 	create_tween().tween_property(self, "modulate", Color(1, 1, 1), 0.2)
+	Events.player_hp_updated.emit(health, max_hp)
 	if health <= 0:
 		get_tree().reload_current_scene()
 

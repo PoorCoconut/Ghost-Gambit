@@ -10,6 +10,8 @@ var move: bool = false
 @export var queen: PackedScene = preload("res://game_scenes/En-Tities/Scenes/queen.tscn")
 @export var bishop: PackedScene = preload("res://game_scenes/En-Tities/Scenes/bishop.tscn")
 
+@onready var sprite:Sprite2D = $Sprite
+
 func _ready():
 	add_to_group("enemies")
 	
@@ -29,6 +31,7 @@ func _on_player_moved():
 	if(move):
 		return
 	if not test_move(transform, Vector2(0, grid_size - 5)):
+		sprite.frame = 0
 		var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 		tween.tween_property(self, "position", next_pos, 0.2)
 		await tween.finished
@@ -76,6 +79,8 @@ func take_damage(amount: int):
 	var t = create_tween()
 	t.tween_property(self, "modulate", Color(1, 1, 1), 0.2)
 	
+	sprite.frame = 1
+	
 	if health <= 0:
 		var player = get_tree().get_first_node_in_group("player")
 		if player and player.has_method("add_essence_to_queue"):
@@ -84,6 +89,8 @@ func take_damage(amount: int):
 #just duke mfker
 func receive_knockback(dir: Vector2):
 	take_damage(1)
+	if health<=0: return
+	
 	var target = position + (dir * grid_size)
 	if not test_move(transform, dir * (grid_size - 5)):
 		var tween = create_tween()

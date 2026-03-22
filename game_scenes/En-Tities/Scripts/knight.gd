@@ -19,10 +19,13 @@ const L_MOVES = [
 	Vector2i(1, 2), Vector2i(1, -2), Vector2i(-1, 2), Vector2i(-1, -2)
 ]
 
+@onready var sprite:Sprite2D = $Sprite
+
 func _ready():
 	health = max_hp
 	add_to_group("enemies")
 	modulate = Color(0.2, 0.8, 0.2)
+	sprite.frame = 0
 	position = (Vector2i(position / grid_size) * grid_size) + Vector2i(grid_size/2, grid_size/2)
 	player = get_tree().get_first_node_in_group("player")
 	if player and player.has_signal("moved_one_tile"):
@@ -42,6 +45,7 @@ func _on_player_turn_finished():
 #jumpieeeeeeeee logic
 func execute_knight_logic():
 	if is_charging:
+		sprite.frame = 1
 		await execute_knight_jump(locked_target_pos, true)
 		return
 
@@ -51,6 +55,7 @@ func execute_knight_logic():
 	
 	# Check if player is in "L" range
 	if (diff.x == 2 and diff.y == 1) or (diff.x == 1 and diff.y == 2):
+		sprite.frame = 1
 		is_charging = true
 		locked_target_pos = (Vector2(p_grid) * grid_size) + Vector2(grid_size/2, grid_size/2)
 		target_tile_pos = locked_target_pos
@@ -86,11 +91,14 @@ func execute_knight_jump(target: Vector2, is_attack: bool):
 	return_pos = position
 	
 	target_tile_pos = target 
+	sprite.frame = 1
 	
 	var tween = create_tween().set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
 	tween.tween_property(self, "position", target, move_speed)
 	
 	await tween.finished
+	
+	sprite.frame = 0
 	
 	if is_attack:
 		if position.distance_to(player.position) < 20:
