@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c1u4a58f1y6a1"]
 
 [ext_resource type="Script" uid="uid://ox2m1amwet5v" path="res://game_scenes/En-Tities/Scripts/queen.gd" id="1_l7y2x"]
-[ext_resource type="Texture2D" uid="uid://cdq1w16bsklp2" path="res://icon.svg" id="2_8msk8"]
+[ext_resource type="Texture2D" uid="uid://cp4xkbpb2ewua" path="res://game_assets/sprites/queen.png" id="2_l7y2x"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8frb"]
 size = Vector2(128, 128)
@@ -13,7 +13,8 @@ collision_mask = 7
 script = ExtResource("1_l7y2x")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1965004166]
-texture = ExtResource("2_8msk8")
+texture = ExtResource("2_l7y2x")
+hframes = 2
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=570205917]
 target_position = Vector2(0, 80)

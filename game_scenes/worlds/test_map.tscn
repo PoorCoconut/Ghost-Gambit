@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cdq1w16bsklp2" path="res://icon.svg" id="1_irwjx"]
 [ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/baseplayer.tscn" id="2_01pfq"]
 [ext_resource type="PackedScene" uid="uid://d1shkjfwmu0ye" path="res://game_scenes/En-Tities/Scenes/king.tscn" id="4_ajbwo"]
+[ext_resource type="PackedScene" uid="uid://btbcu7i2ahwq5" path="res://systems/HUD/player_hud.tscn" id="4_neju5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_01pfq"]
 texture = ExtResource("1_irwjx")
@@ -45,3 +46,5 @@ position = Vector2(776, 515)
 
 [node name="King" parent="." unique_id=224750608 instance=ExtResource("4_ajbwo")]
 position = Vector2(959, 157)
+
+[node name="PlayerHUD" parent="." unique_id=1878162404 instance=ExtResource("4_neju5")]

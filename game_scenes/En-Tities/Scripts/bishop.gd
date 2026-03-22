@@ -12,11 +12,14 @@ var heal_fatigue_turns: int = 0
 var target_tile_pos: Vector2 = Vector2.ZERO
 var player: CharacterBody2D
 
+@onready var sprite:Sprite2D = $Sprite
+
 func _ready():
 	health = max_hp
 	add_to_group("enemies")
 	#remove this
 	modulate = Color(0.8, 0.2, 0.8)
+	sprite.frame = 0
 	position = position.snapped(Vector2(grid_size, grid_size)) + Vector2(grid_size/2, grid_size/2)
 	
 	player = get_tree().get_first_node_in_group("player")
@@ -51,8 +54,9 @@ func process_diagonal_kiting():
 
 	for dir in directions:
 		for distance in range(1, 3):
+			sprite.frame = 0
 			var target = my_grid + (dir * distance)
-			var target_px = (Vector2(target) * grid_size) + Vector2(grid_size/2, grid_size/2)
+			var target_px = (Vector2(target) * grid_size) + Vector2(grid_size/2, grid_size/2.0)
 			
 			if is_tile_blocked(target_px): break 
 			
@@ -64,6 +68,7 @@ func process_diagonal_kiting():
 				best_tile = target
 
 	if best_tile != my_grid:
+		sprite.frame = 1
 		move_to_tile(best_tile)
 
 func execute_heal_pulse():
@@ -93,11 +98,14 @@ func execute_heal_pulse():
 
 func flash_target_green(target):
 	var old_color = target.modulate
+	var old_frame = sprite.frame
 	target.modulate = Color(0, 10, 0)
+	sprite.frame = 1
 	#making the others green, kamo na bahala
 	get_tree().create_timer(0.2).timeout.connect(func():
 		if is_instance_valid(target):
 			target.modulate = old_color
+			sprite.frame = old_frame
 	)
 #move
 func move_to_tile(tile_coords: Vector2i):
@@ -139,9 +147,13 @@ func receive_knockback(push_dir: Vector2):
 #temp vfx
 func flash_damage():
 	var old_mod = modulate
+	var old_frame = sprite.frame
 	modulate = Color(10, 10, 10)
+	sprite.frame = 1
 	await get_tree().create_timer(0.1).timeout
-	if is_instance_valid(self): modulate = old_mod
+	if is_instance_valid(self):
+		sprite.frame = old_frame
+		modulate = old_mod
 
 func apply_healing(amount: int):
 	health += amount

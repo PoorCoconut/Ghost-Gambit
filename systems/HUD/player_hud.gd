@@ -16,14 +16,14 @@ func _ready():
 # This runs automatically whenever the Player emits the signal
 func _on_player_hp_updated(current_hp: float, max_hp: float):
 	WhiteBar.max_value = max_hp
+	BarChaser.max_value = max_hp
 	WhiteBar.value = current_hp
 	
-	BarChaser.modulate = Color.GREEN.lerp(Color.RED, current_hp / max_hp)
+	WhiteBar.modulate = Color.GREEN.lerp(Color.RED, 1.0 - ( current_hp / max_hp))
 	var tween = create_tween()
-	tween.tween_property(BarChaser, "value", WhiteBar.value, 0.5).set_trans(Tween.TRANS_SINE)
+	tween.tween_interval(0.4)
+	tween.tween_property(BarChaser, "value", current_hp, 0.5).set_trans(Tween.TRANS_SINE)
 
-	if BarChaser.value < 3:
-		BarChaser.value = 0
 
 	if WhiteBar.value < 25:
 		var tween2 = create_tween()
@@ -33,12 +33,25 @@ func _on_player_hp_updated(current_hp: float, max_hp: float):
 		tween3.tween_property($BarContainer, "modulate:a", 1, 0.5)
 		
 func _on_ability_stolen(ability_data):
+	print("ability stolen: ", ability_data)
 	stolenabilities.push_back(ability_data)
+	_update_ability_display()
 	
 func _on_ability_used():
 	if(stolenabilities.size() > 0):
 		stolenabilities.pop_back()
+	_update_ability_display()
 	
 func _update_ability_display():
+	if stolenabilities.is_empty():
+		AbilityIcon.texture = null
+		AbilitySlot.visible = false
+		return
 	var top = stolenabilities.back()
 	AbilityIcon.texture = top.get("icon", null)
+	AbilitySlot.visible = true
+
+func _animate_slot_pop():
+	AbilitySlot.scale = Vector2(1.2, 1.2)
+	var tween = create_tween()
+	tween.tween_property(AbilitySlot, "scale", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_BOUNCE)

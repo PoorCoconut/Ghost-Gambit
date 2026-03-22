@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://7unf15pxpkjv"]
 
 [ext_resource type="Script" uid="uid://dh30fkfqwsjtu" path="res://game_scenes/En-Tities/Scripts/bishop.gd" id="1_g3njj"]
-[ext_resource type="Texture2D" uid="uid://cdq1w16bsklp2" path="res://icon.svg" id="2_5tl1x"]
+[ext_resource type="Texture2D" uid="uid://d3pcjr3wiiuuu" path="res://game_assets/sprites/bishop.png" id="2_g3njj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v8frb"]
 size = Vector2(128, 128)
@@ -13,7 +13,8 @@ collision_mask = 7
 script = ExtResource("1_g3njj")
 
 [node name="Sprite" type="Sprite2D" parent="." unique_id=1965004166]
-texture = ExtResource("2_5tl1x")
+texture = ExtResource("2_g3njj")
+hframes = 2
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=570205917]
 target_position = Vector2(0, 80)

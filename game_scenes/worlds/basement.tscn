@@ -273,11 +273,4 @@ shape = SubResource("RectangleShape2D_utr7u")
 [node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("6_en736")]
 
 [node name="BasePlayer" parent="." unique_id=240714517 instance=ExtResource("7_ay7ji")]
-z_index = 1
-position = Vector2(363, 123)
-collision_mask = 1
-
-[node name="WorldCameraComponent" parent="BasePlayer" unique_id=1725945058 instance=ExtResource("4_utr7u")]
-scale = Vector2(2, 2)
-
-[connection signal="body_entered" from="Key/Area2D" to="Key" method="_on_body_entered"]
+position = Vector2(121.00001, 199.00002)

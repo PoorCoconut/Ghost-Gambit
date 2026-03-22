@@ -416,6 +416,23 @@ script = ExtResource("2_c5njb")
 action_name = "move_right"
 bind_index = 1
 
+[node name="Skill" type="Label" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=631473860]
+layout_mode = 2
+text = "Skill"
+
+[node name="PrimarySkill" type="Button" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=2106726903]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_c5njb")
+action_name = "ui_idle"
+
+[node name="SecondarySkill" type="Button" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer/ScrollContainer/RebindContainer" unique_id=448613074]
+layout_mode = 2
+size_flags_horizontal = 3
+script = ExtResource("2_c5njb")
+action_name = "ui_idle"
+bind_index = 1
+
 [node name="Control" type="Control" parent="SettingsContainer/SettingsTabs/ControlsSettings/VBoxContainer" unique_id=1931820873]
 layout_mode = 2
 
