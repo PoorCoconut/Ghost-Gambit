@@ -10,6 +10,7 @@ extends Control
 @onready var slider_s_vol: HSlider = %Slider_SVol
 
 @export_file("*.tscn") var next_level_path : String
+@export_file("*.tscn") var credits_path : String
 
 func _ready() -> void:
 	MusicManager.change_music("mainmenu_theme", 0.5)
@@ -25,7 +26,7 @@ func _on_button_settings_pressed() -> void:
 	%SettingsContainer.show()
 
 func _on_button_credits_pressed() -> void:
-	pass
+	GameManager.load_next_level(credits_path)
 
 func _on_button_exit_pressed() -> void:
 	get_tree().quit()

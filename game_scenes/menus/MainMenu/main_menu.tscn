@@ -48,6 +48,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h6sl1")
 next_level_path = "uid://cbh3de4aa1ibn"
+credits_path = "uid://biv56ubukgsaq"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=29496978]
 material = SubResource("ShaderMaterial_abyub")
@@ -68,8 +69,8 @@ texture = ExtResource("5_b1bdr")
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 20.0
-offset_bottom = 490.0
+offset_top = 18.0
+offset_bottom = 488.0
 grow_horizontal = 2
 theme_override_fonts/normal_font = SubResource("FontVariation_6hcsl")
 theme_override_font_sizes/normal_font_size = 150

@@ -37,7 +37,6 @@ func load_player_position():
 		return loaded_pos
 	return null
 
-
 ##Next Level Helper Functions
 func load_next_level(next_level_path : String) -> void:
 	await ScreenTransition.trans_in().finished
