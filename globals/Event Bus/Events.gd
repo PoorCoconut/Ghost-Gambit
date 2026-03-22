@@ -4,3 +4,5 @@ extends Node
 
 
 signal player_hp_updated(current_hp, max_hp)
+signal ability_stolen(ability_data)
+signal ability_used()
