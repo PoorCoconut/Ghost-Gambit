@@ -1,0 +1,54 @@
+[gd_scene format=3 uid="uid://cbu0g7q0cipic"]
+
+[ext_resource type="Shader" uid="uid://cpnjpee2upmtw" path="res://vfx/shaders/scrolling.gdshader" id="1_gf4mo"]
+[ext_resource type="Texture2D" uid="uid://cpmm6ygrtgtld" path="res://game_assets/menu/black_square.png" id="2_03hk7"]
+[ext_resource type="Texture2D" uid="uid://d2f2xu0f6xo67" path="res://game_assets/menu/title_ghost.png" id="4_wlbit"]
+[ext_resource type="FontFile" uid="uid://bn5kkonfmg5tk" path="res://game_assets/fonts/IM Fell English SC/IMFellEnglishSC-Regular.ttf" id="5_whiyl"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_62s50"]
+shader = ExtResource("1_gf4mo")
+shader_parameter/rotate_degree = 19.80000029504376
+shader_parameter/move_degree = 300.7000044807908
+shader_parameter/speed = 0.10000000475
+shader_parameter/scale = 0.2
+shader_parameter/gap = Vector2(0, 0)
+shader_parameter/node_scale = Vector2(1, 0.6)
+
+[sub_resource type="FontVariation" id="FontVariation_vmw5k"]
+base_font = ExtResource("5_whiyl")
+spacing_glyph = 5
+
+[node name="Node2D" type="Node2D" unique_id=617940885]
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1923907144]
+material = SubResource("ShaderMaterial_62s50")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1920.0
+offset_bottom = 1080.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_03hk7")
+
+[node name="TitleGhost" type="Sprite2D" parent="." unique_id=980908306]
+position = Vector2(978, 513)
+texture = ExtResource("4_wlbit")
+
+[node name="GameTitle" type="RichTextLabel" parent="." unique_id=1264112941]
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = -288.0
+offset_right = 1918.5
+offset_bottom = 1416.0
+grow_horizontal = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_vmw5k")
+theme_override_font_sizes/normal_font_size = 150
+bbcode_enabled = true
+text = "[wave][font_size=370]G[/font_size]AMBI[font_size=370]T[/font_size]"
+fit_content = true
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=683066678]
+anchor_mode = 0
