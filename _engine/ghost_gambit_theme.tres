@@ -1,0 +1,106 @@
+[gd_resource type="Theme" format=3 uid="uid://cnuqxs72kbe17"]
+
+[ext_resource type="FontFile" uid="uid://dyggmmmm7637f" path="res://game_assets/fonts/Gochi_Hand/GochiHand-Regular.ttf" id="1_c00al"]
+
+[sub_resource type="DPITexture" id="DPITexture_c00al"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"none\" stroke=\"#b2b2b2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-opacity=\".45\" stroke-width=\"2\" d=\"m5 7 3 3 3-3\"/></svg>
+"
+base_scale = 3.0
+
+[sub_resource type="DPITexture" id="DPITexture_dotb6"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"none\" stroke=\"#b2b2b2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-opacity=\".45\" stroke-width=\"2\" d=\"m11.011063 9.9776246-3.0222094-2.9776246-2.9776247 3.02221\"/></svg>
+"
+base_scale = 3.0
+
+[sub_resource type="DPITexture" id="DPITexture_sek8e"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"none\" stroke=\"#b2b2b2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-opacity=\".45\" stroke-width=\"2\" d=\"m6 11 3-3-3-3\"/></svg>
+"
+base_scale = 3.0
+
+[sub_resource type="DPITexture" id="DPITexture_81asw"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><path fill=\"none\" stroke=\"#b2b2b2\" stroke-linecap=\"round\" stroke-linejoin=\"round\" stroke-opacity=\".45\" stroke-width=\"2\" d=\"m9 11-3-3 3-3\"/></svg>
+"
+base_scale = 3.0
+
+[sub_resource type="DPITexture" id="DPITexture_uin2w"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\" fill-opacity=\".75\"/></svg>
+"
+base_scale = 3.0
+
+[sub_resource type="DPITexture" id="DPITexture_knstp"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\" fill-opacity=\".37\"/></svg>
+"
+base_scale = 3.0
+
+[sub_resource type="DPITexture" id="DPITexture_c3r6q"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"16\" height=\"16\"><circle cx=\"8\" cy=\"8\" r=\"7\" fill=\"#fefefe\"/></svg>
+"
+base_scale = 3.0
+
+[sub_resource type="DPITexture" id="DPITexture_a4qj2"]
+_source = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"4\" height=\"8\"><path fill=\"#fff\" fill-opacity=\".25\" d=\"M1 0h2v16H1z\"/></svg>
+"
+base_scale = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dotb6"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.4)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 20
+expand_margin_left = 4.0
+expand_margin_top = 10.0
+expand_margin_right = 4.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sek8e"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(1, 1, 1, 0.75)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 20
+expand_margin_left = 4.0
+expand_margin_top = 10.0
+expand_margin_right = 4.0
+expand_margin_bottom = 10.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_81asw"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+corner_radius_top_left = 100
+corner_radius_top_right = 100
+corner_radius_bottom_right = 100
+corner_radius_bottom_left = 100
+corner_detail = 20
+expand_margin_left = 4.0
+expand_margin_top = 10.0
+expand_margin_right = 4.0
+expand_margin_bottom = 10.0
+
+[resource]
+default_font = ExtResource("1_c00al")
+default_font_size = 64
+FoldableContainer/icons/expanded_arrow = SubResource("DPITexture_c00al")
+FoldableContainer/icons/expanded_arrow_mirrored = SubResource("DPITexture_dotb6")
+FoldableContainer/icons/folded_arrow = SubResource("DPITexture_sek8e")
+FoldableContainer/icons/folded_arrow_mirrored = SubResource("DPITexture_81asw")
+HSlider/icons/grabber = SubResource("DPITexture_uin2w")
+HSlider/icons/grabber_disabled = SubResource("DPITexture_knstp")
+HSlider/icons/grabber_highlight = SubResource("DPITexture_c3r6q")
+HSlider/icons/tick = SubResource("DPITexture_a4qj2")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_dotb6")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_sek8e")
+HSlider/styles/slider = SubResource("StyleBoxFlat_81asw")

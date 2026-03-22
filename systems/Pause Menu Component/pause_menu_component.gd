@@ -7,6 +7,9 @@ extends CanvasLayer
 @onready var button_menu: Button = %MenuButton
 @onready var button_back: Button = %BackButton
 
+@onready var background : TextureRect = $Background
+@onready var pause_menu : Control = $PauseMenu
+
 @export_file("*.tscn") var menu_path : String
 
 # --- AUDIO MUFFLE VARIABLES ---
@@ -15,8 +18,7 @@ var low_pass_filter : AudioEffectLowPassFilter
 var muffle_tween : Tween
 
 func _ready() -> void:
-	self.hide()
-	
+	pause_menu.hide()
 	vol_master_slider.value = SettingsManager.master_vol
 	vol_music_slider.value = SettingsManager.music_vol
 	vol_sfx_slider.value = SettingsManager.sfx_vol
@@ -38,7 +40,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			show_menu()
 
 func show_menu() -> void:
-	self.show()
+	
 	get_tree().paused = true 
 	
 	# 1. Enable the filter and start it at the maximum "normal" frequency
@@ -50,9 +52,13 @@ func show_menu() -> void:
 	muffle_tween = create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	muffle_tween.tween_property(low_pass_filter, "cutoff_hz", 1500.0, 0.4)\
 		.set_trans(Tween.TRANS_SINE).set_ease(Tween.EASE_OUT)
+		
+	pause_menu.show()
+	trans_in(0.5)
 
 func hide_menu() -> void:
-	self.hide()
+	pause_menu.hide()
+	trans_out(0.5)
 	get_tree().paused = false 
 	
 	# 1. Smoothly sweep the frequency back up to 20500 Hz
@@ -94,3 +100,16 @@ func _on_menu_button_pressed() -> void:
 
 func _on_back_button_pressed() -> void:
 	hide_menu()
+
+func trans_in(trans_time : float = 1) -> Tween:
+	var tween = get_tree().create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.tween_property(background.material, "shader_parameter/progress", 0.5, trans_time).from(0.0).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	return tween
+
+func trans_out(trans_time : float = 1) -> Tween:
+	var tween = get_tree().create_tween().set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.tween_property(background.material, "shader_parameter/progress", 1.0, trans_time).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_OUT)
+	return tween
+
+func reset() -> void:
+	background.material.set_shader_parameter("progress", 0.0)
