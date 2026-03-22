@@ -209,7 +209,6 @@ sources/2 = SubResource("TileSetAtlasSource_pstwx")
 sources/3 = SubResource("TileSetAtlasSource_8v8kt")
 
 [node name="Long Hallway" type="Node2D" unique_id=414426895]
-position = Vector2(-24, -704)
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=1064076965]
 self_modulate = Color(0.1882353, 0.18431373, 0.15686275, 1)
@@ -263,8 +262,7 @@ position = Vector2(66, 992)
 position = Vector2(8464, 200)
 
 [node name="BasePlayer" parent="." unique_id=240714517 instance=ExtResource("5_acoja")]
-position = Vector2(8408, 184)
+position = Vector2(66, 992)
 
-[node name="WorldCameraComponent" parent="BasePlayer" unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("4_2rebh")]
+[node name="WorldCameraComponent" parent="BasePlayer" unique_id=1725945058 instance=ExtResource("4_2rebh")]
 scale = Vector2(2, 2)
-target = NodePath("")
