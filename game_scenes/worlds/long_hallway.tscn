@@ -136,6 +136,7 @@ texture_region_size = Vector2i(80, 80)
 0:0/0 = 0
 1:0/0 = 0
 1:0/0/custom_data_0 = "res://game_scenes/worlds/attic.tscn"
+1:0/0/custom_data_1 = "FromHallway"
 
 [sub_resource type="TileSet" id="TileSet_7xxkc"]
 tile_size = Vector2i(80, 80)
@@ -144,6 +145,8 @@ terrain_set_0/terrain_0/name = "Floor 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 custom_data_layer_0/name = "next_level"
 custom_data_layer_0/type = 4
+custom_data_layer_1/name = "spawn_point"
+custom_data_layer_1/type = 4
 sources/0 = SubResource("TileSetAtlasSource_lpt7n")
 sources/2 = SubResource("TileSetAtlasSource_amrrd")
 sources/3 = SubResource("TileSetAtlasSource_5tee2")
@@ -206,7 +209,7 @@ sources/2 = SubResource("TileSetAtlasSource_pstwx")
 sources/3 = SubResource("TileSetAtlasSource_8v8kt")
 
 [node name="Long Hallway" type="Node2D" unique_id=414426895]
-position = Vector2(-27, -637)
+position = Vector2(-24, -704)
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=1064076965]
 self_modulate = Color(0.1882353, 0.18431373, 0.15686275, 1)
@@ -256,8 +259,11 @@ tile_set = SubResource("TileSet_h00k1")
 [node name="FromFirstFloor" type="Marker2D" parent="." unique_id=1300981523 groups=["spawn_points"]]
 position = Vector2(66, 992)
 
+[node name="FromAttic" type="Marker2D" parent="." unique_id=1267039893 groups=["spawn_points"]]
+position = Vector2(8464, 200)
+
 [node name="BasePlayer" parent="." unique_id=240714517 instance=ExtResource("5_acoja")]
-position = Vector2(66, 1000)
+position = Vector2(8408, 184)
 
 [node name="WorldCameraComponent" parent="BasePlayer" unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("4_2rebh")]
 scale = Vector2(2, 2)

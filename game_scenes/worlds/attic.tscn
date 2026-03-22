@@ -45,13 +45,20 @@ texture_region_size = Vector2i(80, 80)
 texture = ExtResource("2_6ynv2")
 texture_region_size = Vector2i(80, 80)
 1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-40, -40, 40, -40, 40, 40, -40, 40)
 0:4/0 = 0
+0:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-40, -40, 40, -40, 40, 40, -40, 40)
 1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-40, -40, 40, -40, 40, 40, -40, 40)
 1:0/0 = 0
+1:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-40, -40, 40, -40, 40, 40, -40, 40)
 0:5/0 = 0
+0:5/0/physics_layer_0/polygon_0/points = PackedVector2Array(-40, -40, 40, -40, 40, 40, -40, 40)
 
 [sub_resource type="TileSet" id="TileSet_0w58h"]
 tile_size = Vector2i(80, 80)
+physics_layer_0/collision_layer = 3
+physics_layer_0/collision_mask = 3
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Floor 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
@@ -107,9 +114,13 @@ texture_region_size = Vector2i(80, 80)
 texture = ExtResource("2_6ynv2")
 texture_region_size = Vector2i(80, 80)
 2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-40, -40, 40, -40, 40, 40, -40, 40)
 2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-40, -40, 40, -40, 40, 40, -40, 40)
 2:2/0 = 0
+2:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-40, -40, 40, -40, 40, 40, -40, 40)
 2:3/0 = 0
+2:3/0/physics_layer_0/polygon_0/points = PackedVector2Array(-40, -40, 40, -40, 40, 40, -40, 40)
 
 [sub_resource type="TileSet" id="TileSet_tmmap"]
 tile_size = Vector2i(80, 80)
@@ -182,6 +193,8 @@ terrain_set_0/terrain_0/name = "Floor 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 custom_data_layer_0/name = "next_level"
 custom_data_layer_0/type = 4
+custom_data_layer_1/name = "spawn_point"
+custom_data_layer_1/type = 4
 sources/0 = SubResource("TileSetAtlasSource_ls7uw")
 sources/2 = SubResource("TileSetAtlasSource_l8ben")
 sources/3 = SubResource("TileSetAtlasSource_ff280")
@@ -310,11 +323,14 @@ debug_color = Color(0.64730924, 0.5216301, 0, 0.41960785)
 
 [node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("6_0j4ss")]
 
-[node name="WorldCameraComponent" parent="." unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("4_wqb6k")]
-position = Vector2(205, 837)
-target = NodePath("../BasePlayer")
-
 [node name="BasePlayer" parent="." unique_id=240714517 instance=ExtResource("6_wqb6k")]
-position = Vector2(205, 837)
+position = Vector2(919, 838)
+
+[node name="WorldCameraComponent" parent="BasePlayer" unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("4_wqb6k")]
+scale = Vector2(2, 2)
+target = NodePath("..")
+
+[node name="FromHallway" type="Marker2D" parent="." unique_id=2097369658]
+position = Vector2(921, 836)
 
 [connection signal="body_entered" from="Key/Area2D" to="Key" method="_on_body_entered"]
