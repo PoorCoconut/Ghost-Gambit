@@ -33,8 +33,8 @@ script = ExtResource("1_cadqa")
 unique_name_in_owner = true
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 136.0
-offset_bottom = 24.0
+offset_right = 448.0
+offset_bottom = 63.0
 theme_override_styles/background = SubResource("StyleBoxFlat_cadqa")
 theme_override_styles/fill = SubResource("StyleBoxFlat_rhs8c")
 show_percentage = false
@@ -43,10 +43,22 @@ show_percentage = false
 unique_name_in_owner = true
 offset_left = 8.0
 offset_top = 8.0
-offset_right = 136.0
-offset_bottom = 24.0
+offset_right = 448.0
+offset_bottom = 63.0
 theme_override_styles/background = SubResource("StyleBoxFlat_i0keh")
 theme_override_styles/fill = SubResource("StyleBoxFlat_2gw1j")
 show_percentage = false
 
 [node name="Timer" type="Timer" parent="." unique_id=277835653]
+
+[node name="AbilitySlot" type="PanelContainer" parent="." unique_id=797197443]
+unique_name_in_owner = true
+offset_left = 10.0
+offset_top = 76.0
+offset_right = 127.0
+offset_bottom = 193.0
+
+[node name="AbilityIcon" type="TextureRect" parent="AbilitySlot" unique_id=2084523139]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2

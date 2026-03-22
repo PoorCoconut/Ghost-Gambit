@@ -91,14 +91,15 @@ texture = ExtResource("2_yr2o2")
 
 [node name="TitleGhost" type="Sprite2D" parent="Scroller" unique_id=1140649425]
 material = SubResource("ShaderMaterial_qid74")
-position = Vector2(978, 277)
+position = Vector2(978, 254)
 texture = ExtResource("4_1stwg")
 
 [node name="GameTitle" type="RichTextLabel" parent="Scroller" unique_id=261774611]
 anchors_preset = 10
 anchor_right = 1.0
+offset_top = -23.0
 offset_right = 1920.0
-offset_bottom = 608.0
+offset_bottom = 585.0
 grow_horizontal = 2
 theme_override_fonts/normal_font = SubResource("FontVariation_fgck2")
 theme_override_font_sizes/normal_font_size = 150
@@ -110,9 +111,9 @@ vertical_alignment = 1
 
 [node name="CreditsText" type="RichTextLabel" parent="Scroller" unique_id=1347236838]
 offset_left = 50.0
-offset_top = 476.0
+offset_top = 396.0
 offset_right = 1870.0
-offset_bottom = 2712.0
+offset_bottom = 2632.0
 bbcode_enabled = true
 text = "A GODOT Wildjam Submission 
 
@@ -121,11 +122,12 @@ Nameless
 Equinoux
 CraftyCoco
 Len.icon
+VenDiagram
 
 [/wave]
 [font_size=90][wave]Music Used[/wave][/font_size]
-Ghost house - by Tinymemory
-Ghost Tango - by Heitaro Ashibe
+お化けと踊る夜  (A Night of Dancing with Ghosts) - by alaki paca
+オバケのさんぽ (Ghost Walk) - by alaki paca
 Ghost Agitation - by shimtone
 
 
