@@ -1,52 +1,53 @@
 [gd_scene format=3 uid="uid://btbcu7i2ahwq5"]
 
 [ext_resource type="Script" uid="uid://dax15qxwg4uwj" path="res://systems/HUD/player_hud.gd" id="1_cadqa"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_cadqa"]
-bg_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rhs8c"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i0keh"]
-bg_color = Color(0.6, 0.6, 0.6, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2gw1j"]
-bg_color = Color(1, 1, 1, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0, 0, 0, 0)
+[ext_resource type="Texture2D" uid="uid://wyw6ouiyi3xc" path="res://game_assets/HUD_Assets/healthbar_under.png" id="2_i0keh"]
+[ext_resource type="Texture2D" uid="uid://c7v7m7ogmdtwe" path="res://game_assets/HUD_Assets/healthbar_progress.png" id="3_2gw1j"]
+[ext_resource type="Texture2D" uid="uid://5ht7xsmaxtk5" path="res://game_assets/HUD_Assets/healthbar_chaser.png" id="4_2gw1j"]
+[ext_resource type="Texture2D" uid="uid://h0kwcvbv5rd0" path="res://game_assets/HUD_Assets/ability_frame.png" id="5_1tei2"]
 
 [node name="PlayerHUD" type="CanvasLayer" unique_id=1878162404]
 script = ExtResource("1_cadqa")
 
 [node name="BarContainer" type="Node2D" parent="." unique_id=1156197549]
 
-[node name="WhiteBar" type="ProgressBar" parent="BarContainer" unique_id=1739072480]
+[node name="WhiteBarTexture" type="TextureProgressBar" parent="BarContainer" unique_id=705226318]
 unique_name_in_owner = true
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 136.0
-offset_bottom = 24.0
-theme_override_styles/background = SubResource("StyleBoxFlat_cadqa")
-theme_override_styles/fill = SubResource("StyleBoxFlat_rhs8c")
-show_percentage = false
+offset_top = 1.0
+offset_right = 363.63635
+offset_bottom = 81.0
+value = 100.0
+nine_patch_stretch = true
+texture_under = ExtResource("2_i0keh")
+texture_progress = ExtResource("3_2gw1j")
 
-[node name="BarChaser" type="ProgressBar" parent="BarContainer" unique_id=429415386]
+[node name="BarChaserTexture" type="TextureProgressBar" parent="BarContainer" unique_id=1446024535]
 unique_name_in_owner = true
-offset_left = 8.0
-offset_top = 8.0
-offset_right = 136.0
-offset_bottom = 24.0
-theme_override_styles/background = SubResource("StyleBoxFlat_i0keh")
-theme_override_styles/fill = SubResource("StyleBoxFlat_2gw1j")
-show_percentage = false
+offset_top = 1.0
+offset_right = 362.0
+offset_bottom = 82.0
+value = 100.0
+nine_patch_stretch = true
+texture_progress = ExtResource("4_2gw1j")
 
 [node name="Timer" type="Timer" parent="." unique_id=277835653]
+
+[node name="AbilitySlot" type="PanelContainer" parent="." unique_id=797197443]
+unique_name_in_owner = true
+offset_left = 31.0
+offset_top = 101.0
+offset_right = 148.0
+offset_bottom = 218.0
+
+[node name="AbilityIcon" type="TextureRect" parent="AbilitySlot" unique_id=2084523139]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="AbilityFrame" type="TextureRect" parent="." unique_id=798774144]
+offset_left = 19.0
+offset_top = 87.0
+offset_right = 163.0
+offset_bottom = 231.0
+texture = ExtResource("5_1tei2")
+expand_mode = 1

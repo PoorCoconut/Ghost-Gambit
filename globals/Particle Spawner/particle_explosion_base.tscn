@@ -1,0 +1,41 @@
+[gd_scene format=3 uid="uid://cgp5ogceiagv7"]
+
+[sub_resource type="Gradient" id="Gradient_v8o3o"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_jg8kc"]
+gradient = SubResource("Gradient_v8o3o")
+width = 8
+height = 8
+
+[sub_resource type="Curve" id="Curve_v8o3o"]
+_limits = [-200.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_jg8kc"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_lln2m"]
+colors = PackedColorArray(1, 0, 0, 1, 1, 1, 0, 1)
+
+[node name="ParticleExplosion" type="CPUParticles2D" unique_id=2025771890]
+emitting = false
+amount = 100
+texture = SubResource("GradientTexture2D_jg8kc")
+one_shot = true
+speed_scale = 3.0
+explosiveness = 1.0
+randomness = 1.0
+lifetime_randomness = 0.5
+emission_shape = 1
+emission_sphere_radius = 5.0
+gravity = Vector2(0, 0)
+radial_accel_min = 100.0
+radial_accel_max = 300.0
+radial_accel_curve = SubResource("Curve_v8o3o")
+scale_amount_max = 2.0
+scale_amount_curve = SubResource("Curve_jg8kc")
+color_ramp = SubResource("Gradient_lln2m")
