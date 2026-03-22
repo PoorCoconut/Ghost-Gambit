@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://3k5ha5ciql2n"]
+
+[ext_resource type="Script" uid="uid://pfbj8s5xu88e" path="res://game_scenes/En-Tities/Scripts/rook_clone.gd" id="1_8q36y"]
+[ext_resource type="Texture2D" uid="uid://cdq1w16bsklp2" path="res://icon.svg" id="2_qh1so"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xboos"]
+radius = 56.0
+
+[node name="rook_clone" type="CharacterBody2D" unique_id=240714517 groups=["player"]]
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 6
+script = ExtResource("1_8q36y")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1965004166]
+texture = ExtResource("2_qh1so")
+
+[node name="Collision" type="CollisionShape2D" parent="." unique_id=438437244]
+shape = SubResource("CircleShape2D_xboos")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=570205917]
+target_position = Vector2(0, 80)
+collision_mask = 7

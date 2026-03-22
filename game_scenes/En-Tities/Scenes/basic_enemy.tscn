@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b4ee7rgpku4mr"]
+
+[ext_resource type="Script" uid="uid://2i3yu8l7a1fx" path="res://game_scenes/En-Tities/Scripts/basic_enemy.gd" id="1_v8frb"]
+[ext_resource type="Texture2D" uid="uid://cdq1w16bsklp2" path="res://icon.svg" id="2_7j206"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v8frb"]
+size = Vector2(128, 128)
+
+[node name="basic_enemy" type="CharacterBody2D" unique_id=240714517 groups=["player"]]
+scale = Vector2(0.5, 0.5)
+collision_layer = 4
+collision_mask = 7
+script = ExtResource("1_v8frb")
+
+[node name="Sprite" type="Sprite2D" parent="." unique_id=1965004166]
+texture = ExtResource("2_7j206")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=570205917]
+target_position = Vector2(0, 80)
+collision_mask = 7
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=543913376]
+shape = SubResource("RectangleShape2D_v8frb")
