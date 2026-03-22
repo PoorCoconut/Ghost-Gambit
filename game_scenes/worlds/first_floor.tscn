@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://wjkbqjlaioml" path="res://game_scenes/worlds/key.gd" id="4_hvey0"]
 [ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="4_m5pnl"]
 [ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="6_qjdxc"]
+[ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/baseplayer.tscn" id="7_lf25g"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_frqp5"]
 texture = ExtResource("1_frqp5")
@@ -314,9 +315,13 @@ autoplay = &"pulse"
 position = Vector2(0.68078613, -1.4816895)
 shape = SubResource("RectangleShape2D_m5pnl")
 
-[node name="WorldCameraComponent" parent="." unique_id=1725945058 instance=ExtResource("4_m5pnl")]
+[node name="WorldCameraComponent" parent="." unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("4_m5pnl")]
 position = Vector2(2677, -1177)
+target = NodePath("../BasePlayer")
 
 [node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("6_qjdxc")]
+
+[node name="BasePlayer" parent="." unique_id=240714517 instance=ExtResource("7_lf25g")]
+position = Vector2(-919, 118)
 
 [connection signal="body_entered" from="Key/Area2D" to="Key" method="_on_body_entered"]

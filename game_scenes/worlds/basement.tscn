@@ -274,3 +274,6 @@ shape = SubResource("RectangleShape2D_utr7u")
 
 [node name="BasePlayer" parent="." unique_id=240714517 instance=ExtResource("7_ay7ji")]
 position = Vector2(121.00001, 199.00002)
+
+[node name="WorldCameraComponent" parent="." unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("4_utr7u")]
+target = NodePath("../BasePlayer")

@@ -253,9 +253,10 @@ tile_set = SubResource("TileSet_h00k1")
 
 [node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("5_tmy68")]
 
+[node name="WorldCameraComponent" parent="." unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("4_2rebh")]
+position = Vector2(5345, -1000)
+target = NodePath("../BasePlayer")
+
 [node name="BasePlayer" parent="." unique_id=240714517 instance=ExtResource("5_acoja")]
 position = Vector2(5345, -1000)
 collision_mask = 2
-
-[node name="WorldCameraComponent" parent="BasePlayer" unique_id=1725945058 instance=ExtResource("4_2rebh")]
-scale = Vector2(2, 2)
