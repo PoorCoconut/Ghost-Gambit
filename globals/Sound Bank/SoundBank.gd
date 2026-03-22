@@ -2,7 +2,20 @@ extends Node
 
 #Store sound effects here...
 var sfx_dict : Dictionary = {
-	"test_sfx" : preload("res://sound/sfx/sfx_example.mp3")
+	"test_sfx" : preload("res://sound/sfx/sfx_example.mp3"),
+	"explosion" : preload("res://sound/sfx/sfx_explosion1.mp3"),
+	"heal1" : preload("res://sound/sfx/sfx_healing1.mp3"),
+	"heal2" : preload("res://sound/sfx/sfx_healing2.mp3"),
+	"hit1" : preload("res://sound/sfx/sfx_hit1.mp3"),
+	"hit2" : preload("res://sound/sfx/sfx_hit2.mp3"),
+	"hit3" : preload("res://sound/sfx/sfx_hit3.mp3"),
+	"hit4" : preload("res://sound/sfx/sfx_hit4.mp3"),
+	"magic" : preload("res://sound/sfx/sfx_magic1.mp3"),
+	"shield1" : preload("res://sound/sfx/sfx_shield1.mp3"),
+	"shield2" : preload("res://sound/sfx/sfx_shield2.mp3"),
+	"shield3" : preload("res://sound/sfx/sfx_shield3.mp3"),
+	"dash1" : preload("res://sound/sfx/sfx_woosh1.mp3"),
+	"dash2" : preload("res://sound/sfx/sfx_woosh2.mp3")
 }
 
 #Here is an example:
