@@ -14,7 +14,7 @@ func _ready():
 	add_to_group("enemies")
 	
 	var player = get_tree().get_first_node_in_group("player")
-	position = position.snapped(Vector2(grid_size, grid_size)) + Vector2(grid_size/2, grid_size/2)
+	position = position.snapped(Vector2(grid_size, grid_size)) + Vector2(grid_size/2, grid_size/2.0)
 	if player and player.has_signal("moved_one_tile"):
 		player.moved_one_tile.connect(_on_player_moved)
 	else:

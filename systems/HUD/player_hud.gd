@@ -16,14 +16,14 @@ func _ready():
 # This runs automatically whenever the Player emits the signal
 func _on_player_hp_updated(current_hp: float, max_hp: float):
 	WhiteBar.max_value = max_hp
+	BarChaser.max_value = max_hp
 	WhiteBar.value = current_hp
 	
-	BarChaser.modulate = Color.GREEN.lerp(Color.RED, current_hp / max_hp)
+	WhiteBar.modulate = Color.GREEN.lerp(Color.RED, 1.0 - ( current_hp / max_hp))
 	var tween = create_tween()
-	tween.tween_property(BarChaser, "value", WhiteBar.value, 0.5).set_trans(Tween.TRANS_SINE)
+	tween.tween_interval(0.4)
+	tween.tween_property(BarChaser, "value", current_hp, 0.5).set_trans(Tween.TRANS_SINE)
 
-	if BarChaser.value < 3:
-		BarChaser.value = 0
 
 	if WhiteBar.value < 25:
 		var tween2 = create_tween()
