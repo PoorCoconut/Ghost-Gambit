@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://dq1rufuetsi3d"]
+[gd_scene format=4 uid="uid://bsmysoxf1oxhc"]
 
 [ext_resource type="Texture2D" uid="uid://bf0hs3317hwcv" path="res://game_assets/tilesets/1 1.png" id="1_737nd"]
 [ext_resource type="Texture2D" uid="uid://15yb1yrd2rad" path="res://game_assets/tilesets/2.png" id="2_6ynv2"]
@@ -102,6 +102,7 @@ texture_region_size = Vector2i(80, 80)
 0:3/0 = 0
 0:2/0 = 0
 2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-40, -40, 40, -40, 40, 40, -40, 40)
 2:2/0 = 0
 1:2/0 = 0
 
