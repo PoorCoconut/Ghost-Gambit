@@ -1,6 +1,7 @@
 extends Node
 
 var CURRENT_WORLD_STATE : String = "Nothing"
+var FloatingTextScene = preload("res://game_scenes/worlds/FloatingText.tscn")
 const SAVE_PATH : String = "user://savegame.json"
 
 func _ready() -> void:
@@ -84,6 +85,8 @@ func can_move_to_tile(tile_pos: Vector2i, tilemap: TileMapLayer) -> bool:
 				tilemap.erase_cell(tile_pos)
 				return true
 			else:
+				var world_pos = tilemap.map_to_local(tile_pos)
+				show_denied_message(world_pos)
 				do_camera_shake(5.0, 0.1)
 				return false
 	return true # If it's not lock movement allowed
@@ -97,3 +100,9 @@ func check_for_exit(tile_pos: Vector2i, tilemap: TileMapLayer) -> void:
 		
 		if path != "":
 			load_next_level(path)
+
+func show_denied_message(at_position: Vector2):
+	var text_instance = FloatingTextScene.instantiate()
+	# Center the text slightly
+	text_instance.global_position = at_position - Vector2(40, 60) 
+	get_tree().current_scene.add_child(text_instance)
