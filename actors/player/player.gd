@@ -212,3 +212,14 @@ func take_damage(amount: int):
 	create_tween().tween_property(self, "modulate", Color(1, 1, 1), 0.2)
 	if health <= 0:
 		get_tree().reload_current_scene()
+
+#func try_move(direction: Vector2i):
+	#var target_tile = current_tile + direction   
+	## 1. LOCK CHECK
+	#if GameManager.can_move_to_tile(target_tile, wall_tilemap_layer):
+		## Execute the move
+		#current_tile = target_tile
+		#global_position = wall_tilemap_layer.map_to_local(current_tile)
+		## 2. PORTAL CHECK
+		## We check the 'Floor' or 'Props' layer for next_level_path data
+		#GameManager.check_for_exit(current_tile, floor_tilemap_layer)

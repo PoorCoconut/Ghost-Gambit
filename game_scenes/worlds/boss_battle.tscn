@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://bf0hs3317hwcv" path="res://game_assets/tilesets/1 1.png" id="1_8y5jf"]
 [ext_resource type="Texture2D" uid="uid://15yb1yrd2rad" path="res://game_assets/tilesets/2.png" id="2_pjk7a"]
+[ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="3_pjk7a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wtkb"]
 texture = ExtResource("1_8y5jf")
@@ -138,3 +139,5 @@ self_modulate = Color(0.6, 0, 0.22999993, 1)
 position = Vector2(0.09729004, 0.09729004)
 tile_map_data = PackedByteArray("AAACAAIAAAABAAEAAAAHAAIAAAABAAEAAAAIAAIAAAACAAUAAAABAAIAAAACAAUAAAADAAIAAAACAAUAAAAGAAIAAAACAAUAAAAEAAAAAAAAAAAAAAAFAAAAAAABAAAAAAA=")
 tile_set = SubResource("TileSet_0oo02")
+
+[node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("3_pjk7a")]

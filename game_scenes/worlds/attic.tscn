@@ -1,10 +1,11 @@
-[gd_scene format=4 uid="uid://bsmysoxf1oxhc"]
+[gd_scene format=4 uid="uid://dq1rufuetsi3d"]
 
 [ext_resource type="Texture2D" uid="uid://bf0hs3317hwcv" path="res://game_assets/tilesets/1 1.png" id="1_737nd"]
 [ext_resource type="Texture2D" uid="uid://15yb1yrd2rad" path="res://game_assets/tilesets/2.png" id="2_6ynv2"]
 [ext_resource type="Texture2D" uid="uid://krqv8a0hl2nt" path="res://game_assets/tilesets/3 (1).png" id="3_0j4ss"]
 [ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="4_wqb6k"]
-[ext_resource type="Script" uid="uid://wjkbqjlaioml" path="res://game_scenes/worlds/key.gd" id="5_6ynv2"]
+[ext_resource type="Script" path="res://game_scenes/worlds/key.gd" id="5_6ynv2"]
+[ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="6_0j4ss"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a0ttk"]
 texture = ExtResource("1_737nd")
@@ -301,3 +302,5 @@ autoplay = &"pulse"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Key/Area2D" unique_id=710461670]
 position = Vector2(0.4647522, 0.99938965)
 shape = SubResource("RectangleShape2D_737nd")
+
+[node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("6_0j4ss")]

@@ -3,8 +3,9 @@
 [ext_resource type="Texture2D" uid="uid://bf0hs3317hwcv" path="res://game_assets/tilesets/1 1.png" id="1_frqp5"]
 [ext_resource type="Texture2D" uid="uid://15yb1yrd2rad" path="res://game_assets/tilesets/2.png" id="2_m5pnl"]
 [ext_resource type="Texture2D" uid="uid://krqv8a0hl2nt" path="res://game_assets/tilesets/3 (1).png" id="3_hvey0"]
-[ext_resource type="Script" uid="uid://wjkbqjlaioml" path="res://game_scenes/worlds/key.gd" id="4_hvey0"]
+[ext_resource type="Script" path="res://game_scenes/worlds/key.gd" id="4_hvey0"]
 [ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="4_m5pnl"]
+[ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="6_qjdxc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_frqp5"]
 texture = ExtResource("1_frqp5")
@@ -315,3 +316,5 @@ shape = SubResource("RectangleShape2D_m5pnl")
 
 [node name="WorldCameraComponent" parent="." unique_id=1725945058 instance=ExtResource("4_m5pnl")]
 position = Vector2(2677, -1177)
+
+[node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("6_qjdxc")]
