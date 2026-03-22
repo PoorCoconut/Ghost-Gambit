@@ -4,8 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://15yb1yrd2rad" path="res://game_assets/tilesets/2.png" id="2_utr7u"]
 [ext_resource type="Texture2D" uid="uid://krqv8a0hl2nt" path="res://game_assets/tilesets/3 (1).png" id="3_x1t17"]
 [ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="4_utr7u"]
-[ext_resource type="Script" path="res://game_scenes/worlds/key.gd" id="4_x1t17"]
+[ext_resource type="Script" uid="uid://wjkbqjlaioml" path="res://game_scenes/worlds/key.gd" id="4_x1t17"]
 [ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="6_en736"]
+[ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/baseplayer.tscn" id="7_ay7ji"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_utr7u"]
 texture = ExtResource("1_qkffo")
@@ -258,3 +259,6 @@ shape = SubResource("RectangleShape2D_utr7u")
 position = Vector2(775, 322)
 
 [node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("6_en736")]
+
+[node name="BasePlayer" parent="." unique_id=240714517 instance=ExtResource("7_ay7ji")]
+position = Vector2(121.00001, 199.00002)

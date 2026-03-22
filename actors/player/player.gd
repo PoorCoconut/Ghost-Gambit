@@ -23,6 +23,8 @@ var is_blitz_active: bool = false
 var blitz_moves_left: int = 0
 var is_shielded: bool = false
 
+@onready var sprite:Sprite2D = $Sprite
+
 func _ready():
 	add_to_group("player")
 	position = position.snapped(Vector2(grid_size, grid_size)) + Vector2(grid_size/2, grid_size/2)
@@ -39,10 +41,15 @@ func _physics_process(_delta):
 		return
 
 	var input_dir = Vector2.ZERO
-	if Input.is_action_just_pressed("move_right"): input_dir = Vector2.RIGHT
-	elif Input.is_action_just_pressed("move_left"): input_dir = Vector2.LEFT
-	elif Input.is_action_just_pressed("move_up"): input_dir = Vector2.UP
-	elif Input.is_action_just_pressed("move_down"): input_dir = Vector2.DOWN
+	if Input.is_action_pressed("move_right"): input_dir = Vector2.RIGHT
+	elif Input.is_action_pressed("move_left"): input_dir = Vector2.LEFT
+	elif Input.is_action_pressed("move_up"): input_dir = Vector2.UP
+	elif Input.is_action_pressed("move_down"): input_dir = Vector2.DOWN
+	
+	if input_dir == Vector2.LEFT and !sprite.flip_h:
+		sprite.flip_h = true
+	elif input_dir == Vector2.RIGHT and sprite.flip_h:
+		sprite.flip_h = false
 
 	if input_dir != Vector2.ZERO:
 		last_dir = input_dir
