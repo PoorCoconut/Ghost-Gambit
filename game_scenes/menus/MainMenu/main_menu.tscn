@@ -19,10 +19,14 @@ shader_parameter/node_scale = Vector2(1, 0.6)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_k3qgb"]
 shader = ExtResource("4_6hcsl")
-shader_parameter/sway_speed = 1.0
-shader_parameter/sway_strength = 0.01
+shader_parameter/sway_speed = 1.20000005374012
+shader_parameter/sway_strength = 0.0210000009975
 shader_parameter/noise_scale = 5.0
 shader_parameter/time_offset = 0.0
+
+[sub_resource type="FontVariation" id="FontVariation_6hcsl"]
+base_font = ExtResource("6_dcpgc")
+spacing_glyph = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqmwn"]
 bg_color = Color(0.18039216, 0.18039216, 0.18039216, 1)
@@ -57,20 +61,20 @@ texture = ExtResource("3_x2ujj")
 
 [node name="TitleGhost" type="Sprite2D" parent="." unique_id=894030135]
 material = SubResource("ShaderMaterial_k3qgb")
-position = Vector2(983, 232)
+position = Vector2(978, 232)
 texture = ExtResource("5_b1bdr")
 
 [node name="GameTitle" type="RichTextLabel" parent="." unique_id=1318100979]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_top = 32.0
-offset_bottom = 477.0
+offset_top = 20.0
+offset_bottom = 490.0
 grow_horizontal = 2
-theme_override_fonts/normal_font = ExtResource("6_dcpgc")
+theme_override_fonts/normal_font = SubResource("FontVariation_6hcsl")
 theme_override_font_sizes/normal_font_size = 150
 bbcode_enabled = true
-text = "[font_size=370]G[/font_size]AMBI[font_size=370]T[/font_size]"
+text = "[wave][font_size=370]G[/font_size]AMBI[font_size=370]T[/font_size]"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
