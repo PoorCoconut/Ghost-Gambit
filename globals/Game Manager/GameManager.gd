@@ -3,13 +3,6 @@ extends Node
 var CURRENT_WORLD_STATE : String = "Nothing"
 const SAVE_PATH : String = "user://savegame.json"
 
-## To track keyssss
-var collected_keys = {
-	"Basement_Key": false,
-	"FirstFloor_Key": false,
-	"Attic_Key": false
-}
-
 func _ready() -> void:
 	print("GAME MANAGER LOADED!")
 
@@ -63,43 +56,3 @@ func move_camera_to_player(player_pos : Vector2):
 	if get_tree().get_first_node_in_group("camera"):
 		var camera = get_tree().get_first_node_in_group("camera")
 		camera.moveCameraToEntity(player_pos)
-
-## KEY HELPER FUNCTIONS
-func has_key(key_name: String) -> bool:
-	return collected_keys.get(key_name, false)
-
-func collect_key(key_name: String) -> void:
-	if collected_keys.has(key_name):
-		collected_keys[key_name] = true
-		do_camera_shake(5.0, 0.2) # For more impact typsh
-
-## TILE LOGIC
-func not_locked(tile_pos: Vector2i, tilemap: TileMapLayer) -> bool:
-	var tile_data = tilemap.get_cell_tile_data(tile_pos)
-	
-	if tile_data:
-		# Check if this tile is lock
-		var key_needed = tile_data.get_custom_data("required_key")
-		
-		if key_needed != "":
-			if has_key(key_needed):
-				print("Unlocked! Removing tile at: ", tile_pos)
-				tilemap.erase_cell(tile_pos) 
-				return true
-			else:
-				print("Locked! Needs: ", key_needed)
-				do_camera_shake(5.0, 0.1)
-				return false
-				
-	return true # If it's not a lock tile, movement is allowed
-
-## LEVEL TRANSITION LOGIC
-func check_for_exit(tile_pos: Vector2i, tilemap: TileMapLayer) -> void:
-	var tile_data = tilemap.get_cell_tile_data(tile_pos)
-	
-	if tile_data:
-		var path = tile_data.get_custom_data("next_level")
-		
-		if path != "":
-			print("Exit reached! Moving to: ", path)
-			load_next_level(path)
