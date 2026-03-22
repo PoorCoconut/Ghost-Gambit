@@ -2,12 +2,17 @@ extends CanvasLayer
 
 @onready var WhiteBar = %WhiteBar
 @onready var BarChaser = %BarChaser
+@onready var AbilitySlot = %AbilitySlot
+@onready var AbilityIcon = %AbilityIcon
 var style 
+var stolenabilities: Array = []
 
 func _ready():
 	style = BarChaser.get_theme_stylebox("fill") as StyleBoxFlat
 	# Listen for the signal and connect it to a local function
 	Events.player_hp_updated.connect(_on_player_hp_updated)
+	Events.ability_stolen.connect(_on_ability_stolen)
+	Events.ability_used.connect(_on_ability_used)
 
 # This runs automatically whenever the Player emits the signal
 func _on_player_hp_updated(current_hp: float, max_hp: float):
@@ -27,3 +32,14 @@ func _on_player_hp_updated(current_hp: float, max_hp: float):
 	else:
 		var tween3 = create_tween()
 		tween3.tween_property($BarContainer, "modulate:a", 1, 0.5)
+		
+func _on_ability_stolen(ability_data):
+	stolenabilities.push_back(ability_data)
+	
+func _on_ability_used():
+	if(stolenabilities.size() > 0):
+		stolenabilities.pop_back()
+	
+func _update_ability_display():
+	var top = stolenabilities.back()
+	AbilityIcon.texture = top.get("icon", null)
