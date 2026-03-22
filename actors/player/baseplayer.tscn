@@ -20,14 +20,6 @@ texture = ExtResource("2_xboos")
 position = Vector2(0, 1)
 shape = SubResource("RectangleShape2D_xboos")
 
-[node name="DebugStateLabel" type="Label" parent="." unique_id=1664998739]
-offset_left = -24.0
-offset_top = -96.0
-offset_right = 26.0
-offset_bottom = -73.0
-horizontal_alignment = 1
-vertical_alignment = 1
-
 [node name="HitboxComponent" parent="." unique_id=1755790887 instance=ExtResource("2_xpno6")]
 
 [node name="HurtboxComponent" parent="." unique_id=330416737 instance=ExtResource("3_xboos")]
