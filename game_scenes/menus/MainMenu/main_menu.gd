@@ -12,11 +12,13 @@ extends Control
 @export_file("*.tscn") var next_level_path : String
 
 func _ready() -> void:
+	MusicManager.change_music("mainmenu_theme", 0.5)
 	slider_ma_vol.value = SettingsManager.master_vol
 	slider_mu_vol.value = SettingsManager.music_vol
 	slider_s_vol.value = SettingsManager.sfx_vol
 
 func _on_button_play_pressed() -> void:
+	MusicManager.change_music("game_theme", 1.0)
 	GameManager.load_next_level(next_level_path)
 
 func _on_button_settings_pressed() -> void:
