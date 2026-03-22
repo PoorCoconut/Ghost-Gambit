@@ -2,6 +2,31 @@
 
 [ext_resource type="Script" uid="uid://b6rwu6r4il3so" path="res://game_scenes/menus/MainMenu/main_menu.gd" id="1_h6sl1"]
 [ext_resource type="Script" uid="uid://cxjik30ut0s3y" path="res://systems/Rebind Button Script Module/RebindButton.gd" id="2_c5njb"]
+[ext_resource type="Shader" uid="uid://cpnjpee2upmtw" path="res://vfx/shaders/scrolling.gdshader" id="2_kcaeb"]
+[ext_resource type="Texture2D" uid="uid://cpmm6ygrtgtld" path="res://game_assets/menu/black_square.png" id="3_x2ujj"]
+[ext_resource type="Shader" uid="uid://dl876o1ngfyl7" path="res://vfx/shaders/fiery.gdshader" id="4_6hcsl"]
+[ext_resource type="Texture2D" uid="uid://d2f2xu0f6xo67" path="res://game_assets/menu/title_ghost.png" id="5_b1bdr"]
+[ext_resource type="FontFile" uid="uid://bn5kkonfmg5tk" path="res://game_assets/fonts/IM Fell English SC/IMFellEnglishSC-Regular.ttf" id="6_dcpgc"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_abyub"]
+shader = ExtResource("2_kcaeb")
+shader_parameter/rotate_degree = 19.80000029504376
+shader_parameter/move_degree = 300.7000044807908
+shader_parameter/speed = 0.10000000475
+shader_parameter/scale = 0.2
+shader_parameter/gap = Vector2(0, 0)
+shader_parameter/node_scale = Vector2(1, 0.6)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_k3qgb"]
+shader = ExtResource("4_6hcsl")
+shader_parameter/sway_speed = 1.20000005374012
+shader_parameter/sway_strength = 0.0210000009975
+shader_parameter/noise_scale = 5.0
+shader_parameter/time_offset = 0.0
+
+[sub_resource type="FontVariation" id="FontVariation_6hcsl"]
+base_font = ExtResource("6_dcpgc")
+spacing_glyph = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oqmwn"]
 bg_color = Color(0.18039216, 0.18039216, 0.18039216, 1)
@@ -23,23 +48,34 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_h6sl1")
 next_level_path = "uid://cbh3de4aa1ibn"
+credits_path = "uid://biv56ubukgsaq"
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=29496978]
+material = SubResource("ShaderMaterial_abyub")
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("3_x2ujj")
+
+[node name="TitleGhost" type="Sprite2D" parent="." unique_id=894030135]
+material = SubResource("ShaderMaterial_k3qgb")
+position = Vector2(978, 232)
+texture = ExtResource("5_b1bdr")
 
 [node name="GameTitle" type="RichTextLabel" parent="." unique_id=1318100979]
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 320.0
+offset_top = 18.0
+offset_bottom = 488.0
 grow_horizontal = 2
+theme_override_fonts/normal_font = SubResource("FontVariation_6hcsl")
+theme_override_font_sizes/normal_font_size = 150
 bbcode_enabled = true
-text = "GAME NAME"
+text = "[wave][font_size=370]G[/font_size]AMBI[font_size=370]T[/font_size]"
 fit_content = true
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -52,7 +88,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 500
-theme_override_constants/margin_top = 100
+theme_override_constants/margin_top = 300
 theme_override_constants/margin_right = 500
 theme_override_constants/margin_bottom = 10
 
@@ -83,16 +119,17 @@ text = "EXIT"
 
 [node name="SettingsContainer" type="MarginContainer" parent="." unique_id=386881365]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 25
-theme_override_constants/margin_top = 20
-theme_override_constants/margin_right = 25
-theme_override_constants/margin_bottom = 25
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
 
 [node name="SettingsTabs" type="TabContainer" parent="SettingsContainer" unique_id=1400921541]
 layout_mode = 2
@@ -107,10 +144,10 @@ tab_2/title = "Controls"
 
 [node name="GeneralSettings" type="MarginContainer" parent="SettingsContainer/SettingsTabs" unique_id=1393486794]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 metadata/_tab_index = 0
 metadata/_tab_name = "General"
 
@@ -135,6 +172,7 @@ text = "Master"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 max_value = 2.0
 step = 0.1
 
@@ -150,6 +188,7 @@ text = "Music"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 max_value = 2.0
 step = 0.1
 
@@ -165,6 +204,7 @@ text = "SFX"
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
 max_value = 2.0
 step = 0.1
 
@@ -195,10 +235,10 @@ text = "RESET GAME"
 [node name="ViewportSettings" type="MarginContainer" parent="SettingsContainer/SettingsTabs" unique_id=2086456263]
 visible = false
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 metadata/_tab_index = 1
 metadata/_tab_name = "Viewport"
 
@@ -221,6 +261,7 @@ text = "Screen Resolution"
 
 [node name="ScreenResAccordion2" type="FoldableContainer" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/ScreenResolution" unique_id=1578316268]
 layout_mode = 2
+size_flags_vertical = 4
 folded = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/ScreenResolution/ScreenResAccordion2" unique_id=1557384518]
@@ -249,6 +290,7 @@ text = "Window Mode"
 
 [node name="WindowModeAccordion" type="FoldableContainer" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/WindowMode" unique_id=1854593696]
 layout_mode = 2
+size_flags_vertical = 4
 folded = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="SettingsContainer/SettingsTabs/ViewportSettings/VBoxContainer/WindowMode/WindowModeAccordion" unique_id=1726534731]
@@ -270,10 +312,10 @@ text = "EXCLUSIVE FULLSCREEN"
 [node name="ControlsSettings" type="MarginContainer" parent="SettingsContainer/SettingsTabs" unique_id=2007466088]
 visible = false
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
 metadata/_tab_index = 2
 metadata/_tab_name = "Controls"
 

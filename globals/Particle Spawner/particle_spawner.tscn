@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dy8lp6olabbg7"]
+
+[ext_resource type="Script" uid="uid://ll7kda8kbtx1" path="res://globals/Particle Spawner/particle_spawner.gd" id="1_h8n7l"]
+
+[node name="ParticleSpawner" type="Node2D" unique_id=676713037]
+script = ExtResource("1_h8n7l")
