@@ -15,14 +15,16 @@ var target_tile_pos: Vector2 = Vector2.ZERO
 func _ready():
 	health = max_hp
 	add_to_group("enemies") 
+	#remove once you get the look
 	modulate = Color(1, 0, 0)
+	#this is just centering it
 	position = position.snapped(Vector2(grid_size, grid_size)) + Vector2(grid_size/2, grid_size/2)
 	setup_astar_map()
 	
 	player = get_tree().get_first_node_in_group("player")
 	if player and player.has_signal("moved_one_tile"):
 		player.moved_one_tile.connect(_on_player_turn_finished)
-
+#idk whats this but it works
 func setup_astar_map():
 	astar.region = Rect2i(-100, -100, 400, 400)
 	astar.cell_size = Vector2(grid_size, grid_size)
@@ -65,7 +67,7 @@ func pathfind_to_player():
 		var next_pos = (Vector2(path[1]) * grid_size) + Vector2(grid_size/2, grid_size/2)
 		if is_tile_blocked(next_pos): return 
 		move_to_tile(path[1])
-
+#attack
 func attack_player():
 	is_moving = true
 	is_charging = false
@@ -82,7 +84,7 @@ func attack_player():
 	modulate = Color(1, 0, 0)
 	await tween.finished
 	is_moving = false
-
+#hit player
 func check_for_hit_at_pos(hit_pos: Vector2):
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsShapeQueryParameters2D.new()
@@ -97,7 +99,7 @@ func check_for_hit_at_pos(hit_pos: Vector2):
 		if res.collider == player:
 			player.take_damage(1)
 
-
+#take damage HAHAHAHHA
 func receive_knockback(push_dir: Vector2):
 	# 1. Check Shield Negation first
 	if randf() < 0.25:
@@ -110,7 +112,6 @@ func receive_knockback(push_dir: Vector2):
 	flash_damage()
 	
 	if health <= 0:
-		# --- ESSENCE COLLECTION ---
 		var p = get_tree().get_first_node_in_group("player")
 		if is_instance_valid(p) and p.has_method("add_essence_to_queue"):
 			p.add_essence_to_queue(enemy_type)
@@ -126,7 +127,7 @@ func receive_knockback(push_dir: Vector2):
 	tween.tween_property(self, "position", kb_target, 0.15)
 	await tween.finished
 	is_moving = false
-
+#shield
 func play_shield_vfx():
 	var tween = create_tween().set_parallel(false)
 	var old_mod = modulate
@@ -136,7 +137,7 @@ func play_shield_vfx():
 	modulate = Color(1, 0, 0)
 	await tween.finished
 	modulate = old_mod
-
+#check nothing much
 func is_tile_blocked(target_pos: Vector2) -> bool:
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsShapeQueryParameters2D.new()
@@ -152,7 +153,7 @@ func is_tile_blocked(target_pos: Vector2) -> bool:
 		if is_instance_valid(enemy) and enemy != self:
 			if enemy.target_tile_pos.distance_to(target_pos) < 5: return true
 	return false
-
+#move
 func move_to_tile(tile_coords: Vector2i):
 	is_moving = true
 	target_tile_pos = (Vector2(tile_coords) * grid_size) + Vector2(grid_size/2, grid_size/2)
@@ -161,14 +162,13 @@ func move_to_tile(tile_coords: Vector2i):
 	await tween.finished
 	is_moving = false
 	target_tile_pos = Vector2.ZERO
-
+#take damage
 func flash_damage():
 	var old_mod = modulate
 	modulate = Color(10, 10, 10)
 	await get_tree().create_timer(0.1).timeout
 	if is_instance_valid(self): modulate = old_mod
-
+#heal
 func apply_healing(amount: int):
 	health += amount
-	# Optional: You can put a cap here so they don't exceed max HP
 	health = min(health, max_hp)

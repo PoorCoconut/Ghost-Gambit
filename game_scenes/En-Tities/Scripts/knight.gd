@@ -39,7 +39,7 @@ func _on_player_turn_finished():
 		await get_tree().create_timer(0.1).timeout
 		
 		await execute_knight_logic()
-
+#jumpieeeeeeeee logic
 func execute_knight_logic():
 	if is_charging:
 		await execute_knight_jump(locked_target_pos, true)
@@ -59,7 +59,7 @@ func execute_knight_logic():
 		var best_l_target = find_best_l_jump(my_grid, p_grid, true)
 		if best_l_target != position:
 			await execute_knight_jump(best_l_target, false)
-
+#helper
 func find_best_l_jump(my_grid: Vector2i, p_grid: Vector2i, closer: bool) -> Vector2:
 	var best_px = position
 	var best_dist = position.distance_to(player.position) if closer else 0.0
@@ -79,7 +79,7 @@ func find_best_l_jump(my_grid: Vector2i, p_grid: Vector2i, closer: bool) -> Vect
 					best_dist = d
 					best_px = target_px
 	return best_px
-
+#jump
 func execute_knight_jump(target: Vector2, is_attack: bool):
 	is_moving = true
 	is_charging = false
@@ -107,13 +107,13 @@ func execute_knight_jump(target: Vector2, is_attack: bool):
 	modulate = Color(0.2, 0.8, 0.2)
 	is_moving = false
 
-
+#damage
 func receive_knockback(push_dir: Vector2):
 	health -= 1
 	flash_damage()
 	
 	if health <= 0:
-		# --- ESSENCE COLLECTION ---
+		#essence
 		var p = get_tree().get_first_node_in_group("player")
 		if is_instance_valid(p) and p.has_method("add_essence_to_queue"):
 			p.add_essence_to_queue(enemy_type)
@@ -162,7 +162,7 @@ func flash_damage():
 	modulate = Color(10, 10, 10)
 	await get_tree().create_timer(0.1).timeout
 	if is_instance_valid(self): modulate = old_mod
-
+#you may design this
 func apply_healing(amount: int):
 	health += amount
 	health = min(health, max_hp)

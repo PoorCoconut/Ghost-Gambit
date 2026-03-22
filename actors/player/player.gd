@@ -4,10 +4,11 @@ signal moved_one_tile
 
 @export var grid_size: int = 80
 @export var move_speed: float = 0.15
-@export var max_hp: int = 3
+@export var max_hp: int = 10
 
 var health: int = max_hp
 var is_moving: bool = false
+var is_turn_processing: bool = false
 var target_position: Vector2
 var last_dir = Vector2.RIGHT
 
@@ -18,23 +19,17 @@ var blitz_moves_left: int = 0
 var is_shielded: bool = false
 
 func _ready():
-	essence_queue.push_back("Rook")
-	essence_queue.push_back("Pawn")
 	add_to_group("player")
 	position = position.snapped(Vector2(grid_size, grid_size)) + Vector2(grid_size/2, grid_size/2)
 	target_position = position
 	health = max_hp
 
 func _physics_process(_delta):
-	if is_moving: return
+	if is_moving or is_turn_processing: return
 
 	if Input.is_action_just_pressed("ui_accept") and essence_queue.size() > 0:
 		var skill = essence_queue.pop_front()
 		execute_stolen_skill(skill)
-		return
-
-	elif Input.is_action_just_pressed("ui_accept"): 
-		_on_turn_end()
 		return
 
 	var input_dir = Vector2.ZERO
@@ -46,11 +41,15 @@ func _physics_process(_delta):
 	if input_dir != Vector2.ZERO:
 		last_dir = input_dir
 		check_path_and_action(input_dir)
-
+#maybe add special effect when you get essesnce, like sound or somthing
 func add_essence_to_queue(type: String):
-	if essence_queue.size() < max_queue_size:
-		essence_queue.push_back(type)
-
+	if essence_queue.size() >= max_queue_size:
+		return
+		
+	if essence_queue.has(type):
+		return 
+	essence_queue.push_back(type)
+#using skills
 func execute_stolen_skill(type: String):
 	match type:
 		"Pawn":
@@ -61,47 +60,33 @@ func execute_stolen_skill(type: String):
 			blitz_moves_left = 5
 			modulate = Color(0.5, 2, 0.5)
 		"Rook":
-			modulate = Color(0.5, 0.5, 2)
 			execute_fortress_swap(last_dir)
 		"Bishop":
-			health = min(health + 2, max_hp)
+			health = max_hp
 			modulate = Color(0.5, 10, 0.5)
 			get_tree().create_timer(0.4).timeout.connect(reset_visuals)
 		"Queen":
-			modulate = Color(10, 10, 10)
 			execute_player_nuke()
-
-func reset_visuals():
-	var tween = create_tween()
-	tween.tween_property(self, "modulate", Color(1, 1, 1), 0.3)
-
-func take_damage(amount: int):
-	if is_shielded:
-		is_shielded = false
-		modulate = Color(1, 1, 1)
-		return
-
-	health -= amount
-	modulate = Color(10, 0, 0)
-	var tween = create_tween()
-	tween.tween_property(self, "modulate", Color(1, 1, 1), 0.2)
-	if health <= 0:
-		get_tree().reload_current_scene()
-
+#this is sending signal to rest
 func _on_turn_end():
 	is_moving = false
+	is_turn_processing = true
 	position = target_position 
 	
 	if is_blitz_active:
 		blitz_moves_left -= 1
 		if blitz_moves_left > 0:
+			is_turn_processing = false 
 			return
 		else:
 			is_blitz_active = false
 			modulate = Color(1, 1, 1)
 	
 	moved_one_tile.emit()
-
+	
+	await get_tree().create_timer(0.1).timeout
+	is_turn_processing = false
+#pathing
 func check_path_and_action(dir: Vector2):
 	var next_tile_pos = position + (dir * grid_size)
 	var space_state = get_world_2d().direct_space_state
@@ -111,15 +96,14 @@ func check_path_and_action(dir: Vector2):
 	var results = space_state.intersect_point(query)
 	
 	if results.size() > 0:
-		var enemy = results[0].collider
-		bump_attack(enemy, dir)
+		bump_attack(results[0].collider, dir)
 		return 
 
 	if test_move(transform, dir * (grid_size - 5)):
 		return 
 
 	execute_slide(next_tile_pos)
-
+#attack
 func bump_attack(enemy, dir):
 	is_moving = true
 	var tween = create_tween()
@@ -137,7 +121,7 @@ func execute_slide(next_pos):
 	tween.tween_property(self, "position", target_position, move_speed)
 	await tween.finished
 	_on_turn_end()
-
+#im bout to bust
 func execute_player_nuke():
 	is_moving = true
 	modulate = Color(20, 20, 20)
@@ -150,40 +134,22 @@ func execute_player_nuke():
 			spawn_nuke_vfx(target_px)
 			
 			for enemy in get_tree().get_nodes_in_group("enemies"):
-				if is_instance_valid(enemy):
-					if enemy.position.distance_to(target_px) < 10:
-						if enemy.has_method("receive_knockback"):
-							var push_dir = (enemy.position - position).normalized()
-							enemy.receive_knockback(push_dir)
-							enemy.receive_knockback(push_dir)
-							enemy.receive_knockback(push_dir)
-							enemy.receive_knockback(push_dir)
-							enemy.receive_knockback(push_dir)
+				if is_instance_valid(enemy) and enemy.position.distance_to(target_px) < 10:
+					if enemy.has_method("receive_knockback"):
+						var push_dir = (enemy.position - position).normalized()
+						enemy.receive_knockback(push_dir)
 
 	await get_tree().create_timer(0.3).timeout
-	is_moving = false
 	reset_visuals()
-
-func spawn_nuke_vfx(pos: Vector2):
-	var vfx = ColorRect.new()
-	vfx.color = Color(1, 1, 1, 0.8)
-	vfx.size = Vector2(grid_size - 10, grid_size - 10)
-	vfx.position = pos - Vector2((grid_size-10)/2, (grid_size-10)/2)
-	get_parent().add_child(vfx)
-	
-	var t = create_tween().set_parallel(true)
-	t.tween_property(vfx, "modulate", Color(1, 0, 0, 0), 0.4)
-	t.tween_property(vfx, "scale", Vector2(2, 2), 0.4)
-	t.set_trans(Tween.TRANS_QUART)
-	t.chain().tween_callback(vfx.queue_free)
+	_on_turn_end()
+#crystal dash, kamo na bahala vfx oi
 func execute_fortress_swap(dash_dir: Vector2):
 	modulate = Color(0.5, 0.5, 2) 
 	var start_pos = position
 	var current_test_pos = position
-	var can_move_further = true
-	var hit_enemy = null # Track if we stopped because of a specific enemy
+	var hit_enemy = null
 
-	while can_move_further:
+	while true:
 		var danger_zone = current_test_pos + (dash_dir * grid_size * 2)
 		var space_state = get_world_2d().direct_space_state
 		var query = PhysicsShapeQueryParameters2D.new()
@@ -195,12 +161,9 @@ func execute_fortress_swap(dash_dir: Vector2):
 		
 		var results = space_state.intersect_shape(query)
 		if results.size() > 0:
-			# Check if the thing we hit is on the Enemy Layer (Layer 3 / Mask 4)
 			for res in results:
 				if res.collider.collision_layer & 4:
 					hit_enemy = res.collider
-			
-			can_move_further = false 
 			break
 			
 		current_test_pos += (dash_dir * grid_size)
@@ -215,20 +178,37 @@ func execute_fortress_swap(dash_dir: Vector2):
 		tween.tween_property(self, "position", current_test_pos, duration)
 		await tween.finished
 		
-		# --- BUMP DAMAGE LOGIC ---
 		if hit_enemy and is_instance_valid(hit_enemy):
 			if hit_enemy.has_method("receive_knockback"):
-				# Since the Rook is heavy, let's give it a strong knockback
 				hit_enemy.receive_knockback(dash_dir)
-				# If your enemies have a take_damage method, call it here too:
-				# hit_enemy.take_damage(1) 
 		
-		_on_skill_finished()
 		reset_visuals()
+		_on_turn_end()
 	else:
 		reset_visuals()
-		
+#Busting VFX
+func spawn_nuke_vfx(pos: Vector2):
+	var vfx = ColorRect.new()
+	vfx.color = Color(1, 1, 1, 0.8)
+	vfx.size = Vector2(grid_size - 10, grid_size - 10)
+	vfx.position = pos - Vector2((grid_size-10)/2, (grid_size-10)/2)
+	get_parent().add_child(vfx)
+	var t = create_tween().set_parallel(true)
+	t.tween_property(vfx, "modulate", Color(1, 0, 0, 0), 0.4)
+	t.tween_property(vfx, "scale", Vector2(2, 2), 0.4)
+	t.chain().tween_callback(vfx.queue_free)
 
-func _on_skill_finished():
-	is_moving = false
-	position = target_position
+func reset_visuals():
+	var tween = create_tween()
+	tween.tween_property(self, "modulate", Color(1, 1, 1), 0.3)
+#damages
+func take_damage(amount: int):
+	if is_shielded:
+		is_shielded = false
+		modulate = Color(1, 1, 1)
+		return
+	health -= amount
+	modulate = Color(10, 0, 0)
+	create_tween().tween_property(self, "modulate", Color(1, 1, 1), 0.2)
+	if health <= 0:
+		get_tree().reload_current_scene()

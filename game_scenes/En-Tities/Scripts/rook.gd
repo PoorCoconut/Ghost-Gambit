@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 @export var grid_size: int = 80
+#edit for speed
 @export var move_speed: float = 0.25 
 @export var max_hp: int = 3
 @export var health: int
@@ -33,7 +34,7 @@ func _on_player_turn_finished():
 		modulate.a = 1.0
 		await get_tree().create_timer(0.05).timeout
 		check_for_alignment()
-
+#check if sniper
 func check_for_alignment():
 	if not is_instance_valid(player): return
 	
@@ -61,11 +62,11 @@ func check_for_alignment():
 		var steps = distance_tiles - 1
 		if steps > 0:
 			scan_and_jump(move_dir, steps)
-
+#telegraph
 func wind_up():
 	is_charging = true
 	modulate = Color(5, 5, 0) 
-
+#hiteu palyer
 func attack_player():
 	is_moving = true
 	is_charging = false
@@ -83,7 +84,7 @@ func attack_player():
 	
 	await tween.finished
 	is_moving = false
-
+#it jsut scanner
 func scan_and_jump(dir: Vector2, max_steps: int):
 	var possible_steps = 0
 	for i in range(1, max_steps + 1):
@@ -94,7 +95,7 @@ func scan_and_jump(dir: Vector2, max_steps: int):
 	
 	if possible_steps > 0:
 		perform_jump(dir, possible_steps)
-
+#dasheu
 func perform_jump(dir: Vector2, steps: int):
 	is_moving = true
 	var target_pos = position + (dir * grid_size * steps)
@@ -114,7 +115,7 @@ func perform_jump(dir: Vector2, steps: int):
 	else:
 		is_moving = false
 
-
+#take damage
 func receive_knockback(push_dir: Vector2):
 	is_charging = false
 	modulate = Color(0, 0.6, 1)
@@ -134,11 +135,12 @@ func receive_knockback(push_dir: Vector2):
 		queue_free()
 		return
 		
-	spawn_rook_clone()
+	
 	
 	if test_move(transform, push_dir * (grid_size - 5)):
 		return
-		
+	
+	spawn_rook_clone()
 	is_moving = true
 	var kb_target = position + (push_dir * grid_size)
 	var tween = create_tween().set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
@@ -146,7 +148,7 @@ func receive_knockback(push_dir: Vector2):
 	
 	await tween.finished
 	is_moving = false
-
+#clonie thing, substitution jutsu
 func spawn_rook_clone():
 	if not rook_clone_scene or not is_instance_valid(player): return
 	
@@ -175,7 +177,7 @@ func _do_spawn(spawn_pos: Vector2):
 	var clone = rook_clone_scene.instantiate()
 	get_parent().add_child(clone)
 	clone.position = spawn_pos
-
+#vfx
 func flash_damage():
 	var old_mod = modulate
 	modulate = Color(10, 10, 10)
@@ -194,7 +196,7 @@ func is_tile_blocked(target_pos: Vector2) -> bool:
 	query.exclude = [get_rid()] 
 	var results = space_state.intersect_shape(query)
 	return results.size() > 0
-
+#heal
 func apply_healing(amount: int):
 	health += amount
 	health = min(health, max_hp)

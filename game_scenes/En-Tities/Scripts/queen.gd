@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 @export var grid_size: int = 80
 @export var move_speed: float = 0.1 
-@export var health: int = 5
+@export var health: int = 6
 @export var enemy_type: String = "Queen"
 enum State { HUNTING, WINDING, DASHING, COOLDOWN, DYING }
 var current_state = State.HUNTING
@@ -43,7 +43,7 @@ func process_death_countdown():
 		modulate = Color(10, 0, 0)
 	elif death_countdown <= 0:
 		execute_final_explosion()
-
+#im bout to bust
 func execute_final_explosion():
 	if not is_inside_tree(): return
 	is_moving = true
@@ -70,7 +70,7 @@ func execute_final_explosion():
 		await get_tree().create_timer(0.5).timeout
 	
 	queue_free()
-
+#Bust vfs
 func spawn_explosion_vfx(pos: Vector2):
 	var vfx = ColorRect.new()
 	vfx.color = Color(1, 0.2, 0, 0.8)
@@ -93,6 +93,7 @@ func process_queen_logic():
 	if is_aligned and diff != Vector2i.ZERO:
 		locked_direction = Vector2i(sign(diff.x), sign(diff.y))
 		current_state = State.WINDING
+		#telegraph
 		modulate = Color(5, 5, 0)
 	else:
 		var move_dir = Vector2i.ZERO
@@ -102,7 +103,7 @@ func process_queen_logic():
 		var step_target = position + (Vector2(move_dir) * grid_size)
 		if not is_tile_blocked(step_target):
 			perform_simple_step(step_target)
-
+#dashieeee
 func execute_queen_dash():
 	current_state = State.DASHING
 	var my_grid = Vector2i((position / grid_size).floor())
@@ -128,7 +129,7 @@ func execute_queen_dash():
 	
 	_apply_queen_damage(Vector2(locked_direction))
 	_end_dash_cycle()
-
+#just hit player type shi
 func _apply_queen_damage(dir_vec: Vector2):
 	if not is_inside_tree(): return
 	var attack_target_px = position + (dir_vec.normalized() * grid_size)
@@ -148,7 +149,7 @@ func _apply_queen_damage(dir_vec: Vector2):
 			var bump = create_tween()
 			bump.tween_property(self, "position", position + (dir_vec * 25), 0.05)
 			bump.tween_property(self, "position", position, 0.05)
-
+#helper
 func is_tile_blocked_by_wall(target_pos: Vector2) -> bool:
 	if not is_inside_tree(): return false
 	var space_state = get_world_2d().direct_space_state
@@ -165,7 +166,7 @@ func is_tile_blocked(target_pos: Vector2) -> bool:
 		if is_instance_valid(enemy) and enemy != self:
 			if enemy.position.distance_to(target_pos) < 5: return true
 	return false
-
+#its jsut 1 step
 func perform_simple_step(target: Vector2):
 	is_moving = true
 	var tween = create_tween()
@@ -173,7 +174,7 @@ func perform_simple_step(target: Vector2):
 	await tween.finished
 	is_moving = false
 
-
+#take damage
 func receive_knockback(_push_dir: Vector2):
 	if current_state == State.DYING: return
 	
@@ -181,18 +182,14 @@ func receive_knockback(_push_dir: Vector2):
 	flash_damage()
 	
 	if health <= 0:
-		# --- ESSENCE COLLECTION ---
-		# We trigger this IMMEDIATELY so the player gets the skill 
-		# as soon as the HP hits zero, not after the 4-turn wait.
 		var p = get_tree().get_first_node_in_group("player")
 		if is_instance_valid(p) and p.has_method("add_essence_to_queue"):
 			p.add_essence_to_queue(enemy_type)
 		
 		current_state = State.DYING
+		#she go booom boom
 		modulate = Color(2, 0, 0)
-		# Note: The 'queue_free()' will be called at the end of the 
-		# execute_final_explosion() function, not here.
-
+#damage effects
 func flash_damage():
 	if not is_inside_tree(): return
 	var old_mod = modulate
