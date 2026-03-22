@@ -1,9 +1,10 @@
-[gd_scene format=4 uid="uid://dq1rufuetsi3d"]
+[gd_scene format=4 uid="uid://bsmysoxf1oxhc"]
 
 [ext_resource type="Texture2D" uid="uid://bf0hs3317hwcv" path="res://game_assets/tilesets/1 1.png" id="1_737nd"]
 [ext_resource type="Texture2D" uid="uid://15yb1yrd2rad" path="res://game_assets/tilesets/2.png" id="2_6ynv2"]
 [ext_resource type="Texture2D" uid="uid://krqv8a0hl2nt" path="res://game_assets/tilesets/3 (1).png" id="3_0j4ss"]
 [ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="4_wqb6k"]
+[ext_resource type="Script" uid="uid://wjkbqjlaioml" path="res://game_scenes/worlds/key.gd" id="5_6ynv2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a0ttk"]
 texture = ExtResource("1_737nd")
@@ -122,6 +123,7 @@ texture = ExtResource("1_737nd")
 texture_region_size = Vector2i(80, 80)
 0:3/0 = 0
 0:2/0 = 0
+0:2/0/custom_data_0 = "Attic_Key"
 2:0/0 = 0
 2:2/0 = 0
 1:2/0 = 0
@@ -146,6 +148,8 @@ tile_size = Vector2i(80, 80)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Floor 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+custom_data_layer_0/name = "required_key"
+custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_6ynv2")
 sources/2 = SubResource("TileSetAtlasSource_wqb6k")
 sources/1 = SubResource("TileSetAtlasSource_0j4ss")
@@ -165,12 +169,15 @@ texture = ExtResource("3_0j4ss")
 texture_region_size = Vector2i(80, 80)
 0:0/0 = 0
 1:0/0 = 0
+1:0/0/custom_data_0 = "res://game_scenes/worlds/long_hallway.tscn"
 
 [sub_resource type="TileSet" id="TileSet_5vopx"]
 tile_size = Vector2i(80, 80)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Floor 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+custom_data_layer_0/name = "next_level"
+custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_ls7uw")
 sources/2 = SubResource("TileSetAtlasSource_l8ben")
 sources/3 = SubResource("TileSetAtlasSource_ff280")
@@ -239,6 +246,9 @@ _data = {
 &"pulse": SubResource("Animation_auuq7")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_737nd"]
+size = Vector2(57.03507, 70.02706)
+
 [node name="Attic" type="Node2D" unique_id=700531587]
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=312799543]
@@ -280,7 +290,14 @@ rotation = -0.034906585
 texture = SubResource("CompressedTexture2D_p6ied")
 region_enabled = true
 region_rect = Rect2(16, 322, 64, 70)
+script = ExtResource("5_6ynv2")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Key" unique_id=318041518]
 libraries/ = SubResource("AnimationLibrary_c1xgk")
 autoplay = &"pulse"
+
+[node name="Area2D" type="Area2D" parent="Key" unique_id=876524879]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Key/Area2D" unique_id=710461670]
+position = Vector2(0.4647522, 0.99938965)
+shape = SubResource("RectangleShape2D_737nd")

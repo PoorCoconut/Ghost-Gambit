@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://djix5tvvdyhqp"]
+[gd_scene format=4 uid="uid://c7cgokws54uqm"]
 
 [ext_resource type="Texture2D" uid="uid://bf0hs3317hwcv" path="res://game_assets/tilesets/1 1.png" id="1_xmst0"]
 [ext_resource type="Texture2D" uid="uid://15yb1yrd2rad" path="res://game_assets/tilesets/2.png" id="2_2rebh"]
@@ -91,6 +91,7 @@ texture = ExtResource("1_xmst0")
 texture_region_size = Vector2i(80, 80)
 0:3/0 = 0
 0:2/0 = 0
+0:2/0/custom_data_0 = "Attic_Key"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1vygc"]
 texture = ExtResource("2_2rebh")
@@ -105,6 +106,8 @@ tile_size = Vector2i(80, 80)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Floor 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+custom_data_layer_0/name = "required_key"
+custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_5lld1")
 sources/2 = SubResource("TileSetAtlasSource_1vygc")
 
@@ -123,12 +126,15 @@ texture = ExtResource("3_tmy68")
 texture_region_size = Vector2i(80, 80)
 0:0/0 = 0
 1:0/0 = 0
+1:0/0/custom_data_0 = "res://game_scenes/worlds/attic.tscn"
 
 [sub_resource type="TileSet" id="TileSet_7xxkc"]
 tile_size = Vector2i(80, 80)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Floor 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+custom_data_layer_0/name = "next_level"
+custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_lpt7n")
 sources/2 = SubResource("TileSetAtlasSource_amrrd")
 sources/3 = SubResource("TileSetAtlasSource_5tee2")
@@ -148,12 +154,15 @@ texture = ExtResource("3_tmy68")
 texture_region_size = Vector2i(80, 80)
 0:0/0 = 0
 1:0/0 = 0
+1:0/0/custom_data_0 = "res://game_scenes/worlds/boss_battle.tscn"
 
 [sub_resource type="TileSet" id="TileSet_acoja"]
 tile_size = Vector2i(80, 80)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Floor 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+custom_data_layer_0/name = "next_level"
+custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_q0ua3")
 sources/2 = SubResource("TileSetAtlasSource_fsud6")
 sources/3 = SubResource("TileSetAtlasSource_67ne8")
@@ -173,12 +182,15 @@ texture = ExtResource("3_tmy68")
 texture_region_size = Vector2i(80, 80)
 0:0/0 = 0
 1:0/0 = 0
+1:0/0/custom_data_0 = "res://game_scenes/worlds/first_floor.tscn"
 
 [sub_resource type="TileSet" id="TileSet_h00k1"]
 tile_size = Vector2i(80, 80)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Floor 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+custom_data_layer_0/name = "next_level"
+custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_3nudo")
 sources/2 = SubResource("TileSetAtlasSource_pstwx")
 sources/3 = SubResource("TileSetAtlasSource_8v8kt")

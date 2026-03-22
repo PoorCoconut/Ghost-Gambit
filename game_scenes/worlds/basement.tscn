@@ -1,9 +1,10 @@
-[gd_scene format=4 uid="uid://0gtsuuauf6m6"]
+[gd_scene format=4 uid="uid://dwitej5m0dkwd"]
 
 [ext_resource type="Texture2D" uid="uid://bf0hs3317hwcv" path="res://game_assets/tilesets/1 1.png" id="1_qkffo"]
 [ext_resource type="Texture2D" uid="uid://15yb1yrd2rad" path="res://game_assets/tilesets/2.png" id="2_utr7u"]
 [ext_resource type="Texture2D" uid="uid://krqv8a0hl2nt" path="res://game_assets/tilesets/3 (1).png" id="3_x1t17"]
 [ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="4_utr7u"]
+[ext_resource type="Script" uid="uid://wjkbqjlaioml" path="res://game_scenes/worlds/key.gd" id="4_x1t17"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_utr7u"]
 texture = ExtResource("1_qkffo")
@@ -71,6 +72,7 @@ texture = ExtResource("1_qkffo")
 texture_region_size = Vector2i(80, 80)
 0:3/0 = 0
 0:2/0 = 0
+0:2/0/custom_data_0 = "Basement_Key"
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yy7vs"]
 texture = ExtResource("2_utr7u")
@@ -84,6 +86,8 @@ tile_size = Vector2i(80, 80)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Floor 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+custom_data_layer_0/name = "required_key"
+custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_lovtn")
 sources/2 = SubResource("TileSetAtlasSource_yy7vs")
 
@@ -121,12 +125,15 @@ texture = ExtResource("3_x1t17")
 texture_region_size = Vector2i(80, 80)
 0:0/0 = 0
 1:0/0 = 0
+1:0/0/custom_data_0 = "res://game_scenes/worlds/first_floor.tscn"
 
 [sub_resource type="TileSet" id="TileSet_tqrta"]
 tile_size = Vector2i(80, 80)
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Floor 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
+custom_data_layer_0/name = "next_level"
+custom_data_layer_0/type = 4
 sources/0 = SubResource("TileSetAtlasSource_tljgy")
 sources/2 = SubResource("TileSetAtlasSource_vd6we")
 sources/3 = SubResource("TileSetAtlasSource_ltra4")
@@ -195,6 +202,9 @@ _data = {
 &"pulse": SubResource("Animation_auuq7")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_utr7u"]
+size = Vector2(57.03507, 70.02706)
+
 [node name="Basement" type="Node2D" unique_id=1122890912]
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=1718531514]
@@ -231,10 +241,17 @@ rotation = -0.034906585
 texture = SubResource("CompressedTexture2D_6y0yl")
 region_enabled = true
 region_rect = Rect2(8, 256, 64, 64)
+script = ExtResource("4_x1t17")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Key" unique_id=666752674]
 libraries/ = SubResource("AnimationLibrary_j6xgt")
 autoplay = &"pulse"
+
+[node name="Area2D" type="Area2D" parent="Key" unique_id=2002640694]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Key/Area2D" unique_id=942715434]
+position = Vector2(0.4647522, 0.99938965)
+shape = SubResource("RectangleShape2D_utr7u")
 
 [node name="WorldCameraComponent" parent="." unique_id=1725945058 instance=ExtResource("4_utr7u")]
 position = Vector2(775, 322)
