@@ -245,7 +245,7 @@ z_index = -1
 tile_map_data = PackedByteArray("AAAeAAMAAwABAAAAAAA=")
 tile_set = SubResource("TileSet_tqrta")
 
-[node name="FromFirstFloor" type="Marker2D" parent="." unique_id=1344155807]
+[node name="FromFirstFloor" type="Marker2D" parent="." unique_id=1344155807 groups=["spawn_points"]]
 position = Vector2(2439, 359)
 
 [node name="Key" type="Sprite2D" parent="." unique_id=182410344]
@@ -263,12 +263,13 @@ libraries/ = SubResource("AnimationLibrary_j6xgt")
 autoplay = &"pulse"
 
 [node name="Area2D" type="Area2D" parent="Key" unique_id=2002640694]
-collision_layer = 255
-collision_mask = 255
+collision_layer = 3
+collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Key/Area2D" unique_id=942715434]
 position = Vector2(0.4647522, 0.99938965)
 shape = SubResource("RectangleShape2D_utr7u")
+debug_color = Color(0.9046881, 0.30614606, 0, 0.41960785)
 
 [node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("6_en736")]
 

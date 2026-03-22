@@ -57,6 +57,7 @@ folder_colors={
 player=""
 lock=""
 portal=""
+spawn_points=""
 
 [gui]
 

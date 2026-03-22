@@ -5,7 +5,6 @@
 [ext_resource type="Texture2D" uid="uid://krqv8a0hl2nt" path="res://game_assets/tilesets/3 (1).png" id="3_hvey0"]
 [ext_resource type="Script" uid="uid://wjkbqjlaioml" path="res://game_scenes/worlds/key.gd" id="4_hvey0"]
 [ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="4_m5pnl"]
-[ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/baseplayer.tscn" id="5_lf25g"]
 [ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="6_qjdxc"]
 [ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/baseplayer.tscn" id="7_lf25g"]
 
@@ -154,6 +153,7 @@ texture_region_size = Vector2i(80, 80)
 0:0/0 = 0
 1:0/0 = 0
 1:0/0/custom_data_0 = "res://game_scenes/worlds/long_hallway.tscn"
+1:0/0/custom_data_1 = "FromFirstFloor"
 
 [sub_resource type="TileSet" id="TileSet_2ilej"]
 tile_size = Vector2i(80, 80)
@@ -162,6 +162,8 @@ terrain_set_0/terrain_0/name = "Floor 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 custom_data_layer_0/name = "next_level"
 custom_data_layer_0/type = 4
+custom_data_layer_1/name = "spawn_point"
+custom_data_layer_1/type = 4
 sources/0 = SubResource("TileSetAtlasSource_kmtg6")
 sources/2 = SubResource("TileSetAtlasSource_3guvl")
 sources/3 = SubResource("TileSetAtlasSource_y548x")
@@ -186,8 +188,6 @@ texture_region_size = Vector2i(80, 80)
 
 [sub_resource type="TileSet" id="TileSet_l5r3n"]
 tile_size = Vector2i(80, 80)
-physics_layer_0/collision_layer = 3
-physics_layer_0/collision_mask = 3
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Floor 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
@@ -299,6 +299,7 @@ tile_map_data = PackedByteArray("AAAhAOz/AAAAAAIAAAA=")
 tile_set = SubResource("TileSet_tgyu6")
 
 [node name="To Hallway" type="TileMapLayer" parent="." unique_id=907322111 groups=["portal"]]
+process_mode = 3
 self_modulate = Color(0.45000002, 0.6, 0.45000002, 1)
 z_index = -1
 position = Vector2(-0.25179958, 0.35590744)
@@ -306,6 +307,7 @@ tile_map_data = PackedByteArray("AAAhAOz/AwABAAAAAAA=")
 tile_set = SubResource("TileSet_2ilej")
 
 [node name="To Basement" type="TileMapLayer" parent="." unique_id=223463325 groups=["portal"]]
+process_mode = 3
 self_modulate = Color(0.32634866, 0.09547928, 0.09560302, 1)
 position = Vector2(-0.25179958, 0.35590744)
 tile_map_data = PackedByteArray("AAD//w0AAwABAAAAAAA=")
@@ -319,6 +321,7 @@ texture = SubResource("CompressedTexture2D_q3g8n")
 region_enabled = true
 region_rect = Rect2(88, 245, 64, 77)
 script = ExtResource("4_hvey0")
+key_id = "FirstFloor_Key"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Key" unique_id=390460787]
 libraries/ = SubResource("AnimationLibrary_pmxuq")
@@ -330,7 +333,7 @@ autoplay = &"pulse"
 position = Vector2(0.68078613, -1.4816895)
 shape = SubResource("RectangleShape2D_m5pnl")
 
-[node name="BasePlayer" parent="." unique_id=240714517 instance=ExtResource("5_lf25g")]
+[node name="BasePlayer" parent="." unique_id=240714517 instance=ExtResource("7_lf25g")]
 position = Vector2(-40, 998)
 
 [node name="WorldCameraComponent" parent="BasePlayer" unique_id=1725945058 instance=ExtResource("4_m5pnl")]
@@ -338,7 +341,7 @@ scale = Vector2(2, 2)
 
 [node name="PauseMenuComponent" parent="." unique_id=547681459 instance=ExtResource("6_qjdxc")]
 
-[node name="FromBasement" type="Marker2D" parent="." unique_id=1398333833]
+[node name="FromBasement" type="Marker2D" parent="." unique_id=1398333833 groups=["spawn_points"]]
 position = Vector2(-40, 998)
 
 [connection signal="body_entered" from="Key/Area2D" to="Key" method="_on_body_entered"]

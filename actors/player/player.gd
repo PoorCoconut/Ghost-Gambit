@@ -121,6 +121,7 @@ func _on_turn_end():
 	# --- PORTAL CHECK ---
 	var portal_map = get_layer("portal")
 	if portal_map:
+		print("Teleporting")
 		var current_tile = portal_map.local_to_map(global_position)
 		GameManager.check_for_exit(current_tile, portal_map)
 	
