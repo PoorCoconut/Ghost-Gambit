@@ -32,7 +32,7 @@ func setup_astar_map():
 	astar.diagonal_mode = AStarGrid2D.DIAGONAL_MODE_NEVER
 	astar.update()
 	
-	var map = get_tree().current_scene.find_child("TileMapLayer", true, false)
+	var map = get_tree().current_scene.find_child("Wall", true, false)
 	if map:
 		for cell in map.get_used_cells():
 			var data = map.get_cell_tile_data(cell)
@@ -145,7 +145,7 @@ func is_tile_blocked(target_pos: Vector2) -> bool:
 	sensor.size = Vector2(70, 70)
 	query.shape = sensor
 	query.transform = Transform2D(0, target_pos)
-	query.collision_mask = 2 | 4 
+	query.collision_mask = 2 | 4 | 9
 	var results = space_state.intersect_shape(query)
 	for res in results:
 		if res.collider != self: return true

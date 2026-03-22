@@ -1,4 +1,4 @@
-[gd_scene format=4 uid="uid://bsmysoxf1oxhc"]
+[gd_scene format=4 uid="uid://dq1rufuetsi3d"]
 
 [ext_resource type="Texture2D" uid="uid://bf0hs3317hwcv" path="res://game_assets/tilesets/1 1.png" id="1_737nd"]
 [ext_resource type="Texture2D" uid="uid://15yb1yrd2rad" path="res://game_assets/tilesets/2.png" id="2_6ynv2"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://wjkbqjlaioml" path="res://game_scenes/worlds/key.gd" id="5_6ynv2"]
 [ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="6_0j4ss"]
 [ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/baseplayer.tscn" id="6_wqb6k"]
+[ext_resource type="PackedScene" uid="uid://btbcu7i2ahwq5" path="res://systems/HUD/player_hud.tscn" id="8_a0ttk"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a0ttk"]
 texture = ExtResource("1_737nd")
@@ -332,5 +333,7 @@ target = NodePath("..")
 
 [node name="FromHallway" type="Marker2D" parent="." unique_id=2097369658]
 position = Vector2(921, 836)
+
+[node name="PlayerHUD" parent="." unique_id=1878162404 instance=ExtResource("8_a0ttk")]
 
 [connection signal="body_entered" from="Key/Area2D" to="Key" method="_on_body_entered"]

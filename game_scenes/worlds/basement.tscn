@@ -7,6 +7,8 @@
 [ext_resource type="Script" uid="uid://wjkbqjlaioml" path="res://game_scenes/worlds/key.gd" id="4_x1t17"]
 [ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="6_en736"]
 [ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/baseplayer.tscn" id="7_ay7ji"]
+[ext_resource type="PackedScene" uid="uid://b4ee7rgpku4mr" path="res://game_scenes/En-Tities/Scenes/basic_enemy.tscn" id="8_lovtn"]
+[ext_resource type="PackedScene" uid="uid://btbcu7i2ahwq5" path="res://systems/HUD/player_hud.tscn" id="9_yy7vs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_utr7u"]
 texture = ExtResource("1_qkffo")
@@ -276,5 +278,16 @@ debug_color = Color(0.9046881, 0.30614606, 0, 0.41960785)
 position = Vector2(121.00001, 199.00002)
 
 [node name="WorldCameraComponent" parent="BasePlayer" unique_id=1725945058 instance=ExtResource("4_utr7u")]
+
+[node name="basic_enemy" parent="." unique_id=880832425 instance=ExtResource("8_lovtn")]
+position = Vector2(1240, 440)
+
+[node name="basic_enemy2" parent="." unique_id=1811554743 instance=ExtResource("8_lovtn")]
+position = Vector2(1320, 520)
+
+[node name="basic_enemy3" parent="." unique_id=1989425223 instance=ExtResource("8_lovtn")]
+position = Vector2(1480, 520)
+
+[node name="PlayerHUD" parent="." unique_id=1878162404 instance=ExtResource("9_yy7vs")]
 
 [connection signal="body_entered" from="Key/Area2D" to="Key" method="_on_body_entered"]

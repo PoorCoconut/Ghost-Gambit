@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="4_2rebh"]
 [ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/baseplayer.tscn" id="5_acoja"]
 [ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="5_tmy68"]
+[ext_resource type="PackedScene" uid="uid://btbcu7i2ahwq5" path="res://systems/HUD/player_hud.tscn" id="7_gep7e"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2rebh"]
 texture = ExtResource("1_xmst0")
@@ -266,3 +267,5 @@ position = Vector2(66, 992)
 
 [node name="WorldCameraComponent" parent="BasePlayer" unique_id=1725945058 instance=ExtResource("4_2rebh")]
 scale = Vector2(2, 2)
+
+[node name="PlayerHUD" parent="BasePlayer" unique_id=1878162404 instance=ExtResource("7_gep7e")]

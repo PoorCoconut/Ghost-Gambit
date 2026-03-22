@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://d1shkjfwmu0ye" path="res://game_scenes/En-Tities/Scenes/king.tscn" id="4_wtgq8"]
 [ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/baseplayer.tscn" id="5_0wldx"]
 [ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="6_g1ocp"]
+[ext_resource type="PackedScene" uid="uid://btbcu7i2ahwq5" path="res://systems/HUD/player_hud.tscn" id="7_0wldx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0wtkb"]
 texture = ExtResource("1_8y5jf")
@@ -153,3 +154,5 @@ position = Vector2(360, 1078)
 
 [node name="WorldCameraComponent" parent="." unique_id=1725945058 node_paths=PackedStringArray("target") instance=ExtResource("6_g1ocp")]
 target = NodePath("../BasePlayer")
+
+[node name="PlayerHUD" parent="." unique_id=1878162404 instance=ExtResource("7_0wldx")]

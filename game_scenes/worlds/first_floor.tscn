@@ -7,6 +7,8 @@
 [ext_resource type="PackedScene" uid="uid://b3fobc4mms4jw" path="res://systems/World Camera Component/world_camera_component.tscn" id="4_m5pnl"]
 [ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="6_qjdxc"]
 [ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/baseplayer.tscn" id="7_lf25g"]
+[ext_resource type="PackedScene" uid="uid://btbcu7i2ahwq5" path="res://systems/HUD/player_hud.tscn" id="8_ybsdm"]
+[ext_resource type="PackedScene" uid="uid://c2a6nqcbo36b" path="res://game_scenes/En-Tities/Scenes/knight.tscn" id="9_bvw4j"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_frqp5"]
 texture = ExtResource("1_frqp5")
@@ -343,5 +345,13 @@ scale = Vector2(2, 2)
 
 [node name="FromBasement" type="Marker2D" parent="." unique_id=1398333833 groups=["spawn_points"]]
 position = Vector2(-40, 998)
+
+[node name="PlayerHUD" parent="." unique_id=1878162404 instance=ExtResource("8_ybsdm")]
+
+[node name="knight" parent="." unique_id=1152229249 instance=ExtResource("9_bvw4j")]
+position = Vector2(1001, 1000)
+
+[node name="knight2" parent="." unique_id=664751424 instance=ExtResource("9_bvw4j")]
+position = Vector2(-40, 758)
 
 [connection signal="body_entered" from="Key/Area2D" to="Key" method="_on_body_entered"]
