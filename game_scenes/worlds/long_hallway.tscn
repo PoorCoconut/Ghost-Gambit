@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://c7cgokws54uqm"]
 
+[ext_resource type="Script" uid="uid://ifjrd5vrpp2t" path="res://game_scenes/worlds/long_hallway.gd" id="1_1vygc"]
 [ext_resource type="Texture2D" uid="uid://bf0hs3317hwcv" path="res://game_assets/tilesets/1 1.png" id="1_xmst0"]
 [ext_resource type="Texture2D" uid="uid://15yb1yrd2rad" path="res://game_assets/tilesets/2.png" id="2_2rebh"]
 [ext_resource type="Texture2D" uid="uid://krqv8a0hl2nt" path="res://game_assets/tilesets/3 (1).png" id="3_tmy68"]
@@ -7,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/baseplayer.tscn" id="5_acoja"]
 [ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="5_tmy68"]
 [ext_resource type="PackedScene" uid="uid://btbcu7i2ahwq5" path="res://systems/HUD/player_hud.tscn" id="7_gep7e"]
+[ext_resource type="PackedScene" uid="uid://b4ee7rgpku4mr" path="res://game_scenes/En-Tities/Scenes/basic_enemy.tscn" id="8_5lld1"]
+[ext_resource type="PackedScene" uid="uid://c2a6nqcbo36b" path="res://game_scenes/En-Tities/Scenes/knight.tscn" id="9_1vygc"]
+[ext_resource type="PackedScene" uid="uid://7unf15pxpkjv" path="res://game_scenes/En-Tities/Scenes/bishop.tscn" id="10_lpt7n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2rebh"]
 texture = ExtResource("1_xmst0")
@@ -209,7 +213,16 @@ sources/0 = SubResource("TileSetAtlasSource_3nudo")
 sources/2 = SubResource("TileSetAtlasSource_pstwx")
 sources/3 = SubResource("TileSetAtlasSource_8v8kt")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vygc"]
+size = Vector2(82, 159)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lpt7n"]
+size = Vector2(80, 162)
+
 [node name="Long Hallway" type="Node2D" unique_id=414426895]
+script = ExtResource("1_1vygc")
+next_level_path = "uid://bsmysoxf1oxhc"
+boss_level_path = "uid://bmqmx4kdt7gyn"
 
 [node name="Floor" type="TileMapLayer" parent="." unique_id=1064076965]
 self_modulate = Color(0.1882353, 0.18431373, 0.15686275, 1)
@@ -269,3 +282,97 @@ position = Vector2(67, 993)
 scale = Vector2(2, 2)
 
 [node name="PlayerHUD" parent="BasePlayer" unique_id=1878162404 instance=ExtResource("7_gep7e")]
+
+[node name="basic_enemy" parent="." unique_id=53520998 instance=ExtResource("8_5lld1")]
+position = Vector2(1027, 837)
+
+[node name="basic_enemy2" parent="." unique_id=198840798 instance=ExtResource("8_5lld1")]
+position = Vector2(1429, 999)
+
+[node name="basic_enemy5" parent="." unique_id=561070744 instance=ExtResource("8_5lld1")]
+position = Vector2(2148, 914)
+
+[node name="basic_enemy6" parent="." unique_id=1535745162 instance=ExtResource("8_5lld1")]
+position = Vector2(3349, 439)
+
+[node name="basic_enemy7" parent="." unique_id=1548684579 instance=ExtResource("8_5lld1")]
+position = Vector2(5270, -283)
+
+[node name="basic_enemy8" parent="." unique_id=1077190214 instance=ExtResource("8_5lld1")]
+position = Vector2(7265, 517)
+
+[node name="basic_enemy9" parent="." unique_id=1910297335 instance=ExtResource("8_5lld1")]
+position = Vector2(7908, 1076)
+
+[node name="basic_enemy10" parent="." unique_id=1104825220 instance=ExtResource("8_5lld1")]
+position = Vector2(7428, 1152)
+
+[node name="basic_enemy11" parent="." unique_id=237572544 instance=ExtResource("8_5lld1")]
+position = Vector2(6390, -202)
+
+[node name="knight" parent="." unique_id=1233338505 instance=ExtResource("9_1vygc")]
+position = Vector2(3346, 759)
+scale = Vector2(0.25, 0.25)
+
+[node name="knight2" parent="." unique_id=1968400834 instance=ExtResource("9_1vygc")]
+position = Vector2(3667, -127)
+scale = Vector2(0.25, 0.25)
+
+[node name="knight3" parent="." unique_id=390785293 instance=ExtResource("9_1vygc")]
+position = Vector2(4949, -289)
+scale = Vector2(0.25, 0.25)
+
+[node name="knight4" parent="." unique_id=1237022134 instance=ExtResource("9_1vygc")]
+position = Vector2(5587, -129)
+scale = Vector2(0.25, 0.25)
+
+[node name="knight5" parent="." unique_id=1683447251 instance=ExtResource("9_1vygc")]
+position = Vector2(7186, 757)
+scale = Vector2(0.25, 0.25)
+
+[node name="knight6" parent="." unique_id=1055421025 instance=ExtResource("9_1vygc")]
+position = Vector2(7669, 998)
+scale = Vector2(0.25, 0.25)
+
+[node name="knight7" parent="." unique_id=140727355 instance=ExtResource("9_1vygc")]
+position = Vector2(8387, 756)
+scale = Vector2(0.25, 0.25)
+
+[node name="bishop" parent="." unique_id=841343387 instance=ExtResource("10_lpt7n")]
+position = Vector2(1905, 917)
+
+[node name="bishop2" parent="." unique_id=371196566 instance=ExtResource("10_lpt7n")]
+position = Vector2(7665, 1076)
+
+[node name="bishop3" parent="." unique_id=2116640234 instance=ExtResource("10_lpt7n")]
+position = Vector2(4148, -205)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1711223004]
+position = Vector2(8464, 37)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=977949923]
+position = Vector2(2, 38.5)
+shape = SubResource("RectangleShape2D_1vygc")
+
+[node name="BossArea2D" type="Area2D" parent="." unique_id=1779714934]
+position = Vector2(5347, -1084)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BossArea2D" unique_id=1465237094]
+position = Vector2(1, 42)
+shape = SubResource("RectangleShape2D_lpt7n")
+
+[node name="BossLockHint" type="RichTextLabel" parent="." unique_id=1744423052]
+visible = false
+offset_left = 4567.0
+offset_top = -1295.0
+offset_right = 6199.0
+offset_bottom = -1141.0
+bbcode_enabled = true
+text = "[wave]You might need a key 
+from somewhere...[/wave]"
+fit_content = true
+horizontal_alignment = 1
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="BossArea2D" to="." method="_on_boss_area_2d_body_entered"]
+[connection signal="body_exited" from="BossArea2D" to="." method="_on_boss_area_2d_body_exited"]

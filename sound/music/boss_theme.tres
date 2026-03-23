@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="MusicTrack" format=3 uid="uid://dv1nx6mempy03"]
+
+[ext_resource type="Script" uid="uid://ok7aycfrhu2f" path="res://systems/Custom Music Track Resource/MusicTrack.gd" id="1_ixi38"]
+[ext_resource type="AudioStream" uid="uid://b4hfyso4fahwu" path="res://sound/music/boss_theme.mp3" id="2_5h7i0"]
+
+[resource]
+script = ExtResource("1_ixi38")
+track_name = "boss_theme"
+stems = Array[AudioStream]([ExtResource("2_5h7i0")])
+metadata/_custom_type_script = "uid://ok7aycfrhu2f"

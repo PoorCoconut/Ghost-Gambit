@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/baseplayer.tscn" id="7_lf25g"]
 [ext_resource type="PackedScene" uid="uid://btbcu7i2ahwq5" path="res://systems/HUD/player_hud.tscn" id="8_ybsdm"]
 [ext_resource type="PackedScene" uid="uid://c2a6nqcbo36b" path="res://game_scenes/En-Tities/Scenes/knight.tscn" id="9_bvw4j"]
+[ext_resource type="PackedScene" uid="uid://b4ee7rgpku4mr" path="res://game_scenes/En-Tities/Scenes/basic_enemy.tscn" id="10_tv7fx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_frqp5"]
 texture = ExtResource("1_frqp5")
@@ -353,5 +354,29 @@ position = Vector2(1001, 1000)
 
 [node name="knight2" parent="." unique_id=664751424 instance=ExtResource("9_bvw4j")]
 position = Vector2(-40, 758)
+
+[node name="knight3" parent="." unique_id=1862314135 instance=ExtResource("9_bvw4j")]
+position = Vector2(2765, -682)
+
+[node name="basic_enemy" parent="." unique_id=1241211657 instance=ExtResource("10_tv7fx")]
+position = Vector2(681, 599)
+
+[node name="basic_enemy2" parent="." unique_id=1133759802 instance=ExtResource("10_tv7fx")]
+position = Vector2(1082, 760)
+
+[node name="basic_enemy3" parent="." unique_id=1129407788 instance=ExtResource("10_tv7fx")]
+position = Vector2(1401, 281)
+
+[node name="basic_enemy4" parent="." unique_id=1851586799 instance=ExtResource("10_tv7fx")]
+position = Vector2(2682, 598)
+
+[node name="basic_enemy5" parent="." unique_id=1828993574 instance=ExtResource("10_tv7fx")]
+position = Vector2(3323, 360)
+
+[node name="basic_enemy6" parent="." unique_id=514001724 instance=ExtResource("10_tv7fx")]
+position = Vector2(2360, 1318)
+
+[node name="basic_enemy7" parent="." unique_id=1799114917 instance=ExtResource("10_tv7fx")]
+position = Vector2(2601, -361)
 
 [connection signal="body_entered" from="Key/Area2D" to="Key" method="_on_body_entered"]
