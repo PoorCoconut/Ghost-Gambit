@@ -139,6 +139,9 @@ func play_shield_vfx():
 	modulate = old_mod
 #check nothing much
 func is_tile_blocked(target_pos: Vector2) -> bool:
+	if not is_inside_tree(): #Checks if the enemy is sitll inside the tree. This fixes null errors when the player dies
+		return true
+	
 	var space_state = get_world_2d().direct_space_state
 	var query = PhysicsShapeQueryParameters2D.new()
 	var sensor = RectangleShape2D.new()

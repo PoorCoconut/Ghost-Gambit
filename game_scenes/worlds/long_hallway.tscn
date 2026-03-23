@@ -213,11 +213,11 @@ sources/0 = SubResource("TileSetAtlasSource_3nudo")
 sources/2 = SubResource("TileSetAtlasSource_pstwx")
 sources/3 = SubResource("TileSetAtlasSource_8v8kt")
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lpt7n"]
-radius = 32.06244
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1vygc"]
+size = Vector2(82, 159)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_1vygc"]
-radius = 30.016663
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lpt7n"]
+size = Vector2(80, 162)
 
 [node name="Long Hallway" type="Node2D" unique_id=414426895]
 script = ExtResource("1_1vygc")
@@ -351,13 +351,15 @@ position = Vector2(4148, -205)
 position = Vector2(8464, 37)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=977949923]
-shape = SubResource("CircleShape2D_lpt7n")
+position = Vector2(2, 38.5)
+shape = SubResource("RectangleShape2D_1vygc")
 
 [node name="BossArea2D" type="Area2D" parent="." unique_id=1779714934]
 position = Vector2(5347, -1084)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BossArea2D" unique_id=1465237094]
-shape = SubResource("CircleShape2D_1vygc")
+position = Vector2(1, 42)
+shape = SubResource("RectangleShape2D_lpt7n")
 
 [node name="BossLockHint" type="RichTextLabel" parent="." unique_id=1744423052]
 visible = false
