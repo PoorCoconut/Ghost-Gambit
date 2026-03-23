@@ -28,15 +28,16 @@ func _on_player_turn():
 #spawn helper
 func spawn_pawn():
 	if pawn_scene:
+		# Picks a random lane (from -4 to 3)
 		var lane = randi() % 8 - 4
 		
-		var spawn_x = global_position.x + (lane * grid_size) + (grid_size / 2.0)
-		var spawn_y = position.y + (grid_size * 1.0) + grid_size*0.5 
+		var spawn_x = global_position.x + (lane * grid_size)
+		var spawn_y = global_position.y + (grid_size * 3)
 		
 		take_damage(1)
-		#spawn pawns, just edit the flash king or something
+		
 		var new_pawn = pawn_scene.instantiate()
-		new_pawn.position = Vector2(spawn_x, spawn_y)
+		new_pawn.global_position = Vector2(spawn_x, spawn_y)
 		
 		if "tiles_moved" in new_pawn:
 			new_pawn.tiles_moved = 0

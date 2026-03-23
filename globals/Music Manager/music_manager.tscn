@@ -4,15 +4,9 @@
 [ext_resource type="Script" uid="uid://ok7aycfrhu2f" path="res://systems/Custom Music Track Resource/MusicTrack.gd" id="2_cfotr"]
 [ext_resource type="Resource" uid="uid://cf6wh5r475byb" path="res://sound/music/example_track.tres" id="3_jxerq"]
 [ext_resource type="Resource" uid="uid://cfha3wc0frq7a" path="res://sound/music/example_track2.tres" id="4_ll68j"]
-[ext_resource type="AudioStream" uid="uid://b4hfyso4fahwu" path="res://sound/music/boss_theme.mp3" id="5_ll68j"]
+[ext_resource type="Resource" uid="uid://dv1nx6mempy03" path="res://sound/music/boss_theme.tres" id="5_ilgn7"]
 [ext_resource type="AudioStream" uid="uid://wrdqddpme4ff" path="res://sound/music/game_theme.mp3" id="6_ilgn7"]
 [ext_resource type="AudioStream" uid="uid://csculera71u44" path="res://sound/music/mainmenu_theme.mp3" id="7_1oab0"]
-
-[sub_resource type="Resource" id="Resource_jxerq"]
-script = ExtResource("2_cfotr")
-track_name = "boss_theme"
-stems = Array[AudioStream]([ExtResource("5_ll68j")])
-metadata/_custom_type_script = "uid://ok7aycfrhu2f"
 
 [sub_resource type="Resource" id="Resource_2hrvq"]
 script = ExtResource("2_cfotr")
@@ -29,4 +23,4 @@ metadata/_custom_type_script = "uid://ok7aycfrhu2f"
 [node name="MusicManager" type="Node" unique_id=1495717072]
 process_mode = 3
 script = ExtResource("1_kwnxt")
-music_tracks = Array[ExtResource("2_cfotr")]([ExtResource("3_jxerq"), ExtResource("4_ll68j"), SubResource("Resource_jxerq"), SubResource("Resource_2hrvq"), SubResource("Resource_rlx5c")])
+music_tracks = Array[ExtResource("2_cfotr")]([ExtResource("3_jxerq"), ExtResource("4_ll68j"), ExtResource("5_ilgn7"), SubResource("Resource_2hrvq"), SubResource("Resource_rlx5c")])

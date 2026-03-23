@@ -8,6 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://bkrih4wj555nw" path="res://systems/Pause Menu Component/pause_menu_component.tscn" id="6_0j4ss"]
 [ext_resource type="PackedScene" uid="uid://b3vev5pcqxupu" path="res://actors/player/baseplayer.tscn" id="6_wqb6k"]
 [ext_resource type="PackedScene" uid="uid://btbcu7i2ahwq5" path="res://systems/HUD/player_hud.tscn" id="8_a0ttk"]
+[ext_resource type="PackedScene" uid="uid://b4ee7rgpku4mr" path="res://game_scenes/En-Tities/Scenes/basic_enemy.tscn" id="9_vbwt2"]
+[ext_resource type="PackedScene" uid="uid://7unf15pxpkjv" path="res://game_scenes/En-Tities/Scenes/bishop.tscn" id="10_0w58h"]
+[ext_resource type="PackedScene" uid="uid://c2a6nqcbo36b" path="res://game_scenes/En-Tities/Scenes/knight.tscn" id="11_hr7yf"]
+[ext_resource type="PackedScene" uid="uid://c1u4a58f1y6a1" path="res://game_scenes/En-Tities/Scenes/queen.tscn" id="12_byqfo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_a0ttk"]
 texture = ExtResource("1_737nd")
@@ -302,7 +306,7 @@ tile_set = SubResource("TileSet_5vopx")
 
 [node name="Key" type="Sprite2D" parent="." unique_id=411314024]
 self_modulate = Color(0.4117647, 0, 0.6862745, 1)
-position = Vector2(360.00003, 839)
+position = Vector2(278, 840)
 rotation = -0.034906585
 texture = SubResource("CompressedTexture2D_p6ied")
 region_enabled = true
@@ -336,5 +340,71 @@ target = NodePath("..")
 position = Vector2(921, 836)
 
 [node name="PlayerHUD" parent="." unique_id=1878162404 instance=ExtResource("8_a0ttk")]
+
+[node name="basic_enemy" parent="." unique_id=859402280 instance=ExtResource("9_vbwt2")]
+position = Vector2(921, 280)
+
+[node name="basic_enemy2" parent="." unique_id=1290837748 instance=ExtResource("9_vbwt2")]
+position = Vector2(762, -122)
+
+[node name="basic_enemy3" parent="." unique_id=1254610959 instance=ExtResource("9_vbwt2")]
+position = Vector2(-282, -283)
+
+[node name="basic_enemy4" parent="." unique_id=550544075 instance=ExtResource("9_vbwt2")]
+position = Vector2(1642, -124)
+
+[node name="basic_enemy5" parent="." unique_id=784528508 instance=ExtResource("9_vbwt2")]
+position = Vector2(2522, -279)
+
+[node name="basic_enemy6" parent="." unique_id=1231163243 instance=ExtResource("9_vbwt2")]
+position = Vector2(2759, 37)
+
+[node name="basic_enemy7" parent="." unique_id=1492423014 instance=ExtResource("9_vbwt2")]
+position = Vector2(762, -1242)
+
+[node name="basic_enemy8" parent="." unique_id=757999949 instance=ExtResource("9_vbwt2")]
+position = Vector2(37, -1081)
+
+[node name="basic_enemy9" parent="." unique_id=547886644 instance=ExtResource("9_vbwt2")]
+position = Vector2(-1239, -1081)
+
+[node name="basic_enemy10" parent="." unique_id=1707152731 instance=ExtResource("9_vbwt2")]
+position = Vector2(-2120, -761)
+
+[node name="basic_enemy11" parent="." unique_id=1801028076 instance=ExtResource("9_vbwt2")]
+position = Vector2(-1162, 757)
+
+[node name="basic_enemy12" parent="." unique_id=387454649 instance=ExtResource("9_vbwt2")]
+position = Vector2(-763, 917)
+
+[node name="basic_enemy13" parent="." unique_id=1585766489 instance=ExtResource("9_vbwt2")]
+position = Vector2(-599, 758)
+
+[node name="bishop" parent="." unique_id=1877941564 instance=ExtResource("10_0w58h")]
+position = Vector2(922, 117)
+
+[node name="bishop2" parent="." unique_id=1853026811 instance=ExtResource("10_0w58h")]
+position = Vector2(1081, -126)
+
+[node name="bishop3" parent="." unique_id=1686795693 instance=ExtResource("10_0w58h")]
+position = Vector2(-998, 837)
+
+[node name="knight" parent="." unique_id=1029486532 instance=ExtResource("11_hr7yf")]
+position = Vector2(41, -282)
+
+[node name="knight2" parent="." unique_id=1478119217 instance=ExtResource("11_hr7yf")]
+position = Vector2(-198, -40)
+
+[node name="knight3" parent="." unique_id=291621488 instance=ExtResource("11_hr7yf")]
+position = Vector2(-1161, -520)
+
+[node name="queen" parent="." unique_id=1263326303 instance=ExtResource("12_byqfo")]
+position = Vector2(-2280, 757)
+
+[node name="queen2" parent="." unique_id=50492699 instance=ExtResource("12_byqfo")]
+position = Vector2(-998, -1477)
+
+[node name="queen3" parent="." unique_id=928553274 instance=ExtResource("12_byqfo")]
+position = Vector2(2042, -1242)
 
 [connection signal="body_entered" from="Key/Area2D" to="Key" method="_on_body_entered"]
